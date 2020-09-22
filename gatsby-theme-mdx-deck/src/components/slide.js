@@ -5,6 +5,8 @@ import Context from '../context'
 import useDeck from '../hooks/use-deck'
 import useSwipe from '../hooks/use-swipe'
 import { modes } from '../constants'
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image";
 
 export const Slide = ({ slide, index, preview, ...props }) => {
   const outer = useDeck()
@@ -14,6 +16,18 @@ export const Slide = ({ slide, index, preview, ...props }) => {
     index,
     preview,
   }
+
+  const data = useStaticQuery(graphql`
+    query {
+      img: file(relativePath: { eq: "logo-dark.png" }) {
+        childImageSharp {
+          fixed(height: 48, quality: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `);
 
   return (
     <Context.Provider value={context}>
@@ -35,6 +49,24 @@ export const Slide = ({ slide, index, preview, ...props }) => {
         }}>
         {slide}
       </div>
+      <a
+        href="https://joincpi.org/"
+        target="_blank"
+        sx={{
+          position: 'fixed',
+          top: '2rem',
+          right: '2rem',
+          color: 'white',
+        }}
+      >
+        <Img
+          fixed={data.img.childImageSharp.fixed}
+          alt="CP Initiative"
+          sx={{
+            maxHeight: "12rem"
+          }}
+        />
+      </a>
     </Context.Provider>
   )
 }
