@@ -1,7 +1,16 @@
 const IS_LOCAL = process.cwd() === __dirname
 
 const remarkPlugins = [require('remark-unwrap-images'), require('remark-emoji')]
-const gatsbyRemarkPlugins = [`gatsby-remark-import-code`]
+const gatsbyRemarkPlugins = [
+  `gatsby-remark-import-code`,
+  {
+    resolve: `gatsby-remark-katex`,
+    options: {
+      // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+      strict: `ignore`,
+    },
+  },
+]
 
 const config = (opts = {}) => {
   const { mdx = true, contentPath: name = 'decks' } = opts
