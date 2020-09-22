@@ -46,6 +46,7 @@ export const Slide = ({ slide, index, preview, ...props }) => {
           color: 'text',
           bg: 'background',
           variant: 'styles.Slide',
+
         }}>
         {slide}
       </div>

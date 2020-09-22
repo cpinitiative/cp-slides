@@ -1,0 +1,53 @@
+import { future } from "@mdx-deck/themes";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+
+export const theme = future;
+
+# Rectangle Geometry
+
+https://usaco.guide/bronze/rect-geo
+
+---
+
+## Rectangle Geometry
+
+<ListSteps>
+
+- Problems involving rectangles whose sides are parallel to the coordinate axes.
+- Tip: Draw out the problem! This should logically lead to a solution.
+
+</ListSteps>
+
+---
+
+## Example
+
+[USACO 2017 Dec Bronze - Blocked Billboard](http://www.usaco.org/index.php?page=viewproblem2&cpid=759)
+
+Problem Statement:
+
+Given two billboards and one truck (all rectangles), find the area of the billboards that aren’t covered by the truck.
+
+---
+
+## Solution
+
+<ListSteps>
+
+- Coordinates are in the range [-1000, 1000]
+- Simply go through 2000^2 possible visible squares and check which ones are visible using nested for loops.
+- Note: You can also solve in O(1) with math!
+
+</ListSteps>
+
+https://usaco.guide/bronze/rect-geo#naive-solution
+
+---
+
+## Code Along!
+
+https://repl.it/
+
+---
+
+// todo code
