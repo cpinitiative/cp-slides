@@ -22,7 +22,7 @@ export const Slide = ({ slide, index, preview, ...props }) => {
       img: file(relativePath: { eq: "logo-dark.png" }) {
         childImageSharp {
           fixed(height: 48, quality: 100) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_noBase64
           }
         }
       }
