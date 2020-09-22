@@ -1,5 +1,5 @@
 import React from 'react'
-import useSteps from "gatsby-theme-mdx-deck/src/hooks/use-steps";
+import useSteps from "../../../gatsby-theme-mdx-deck/src/hooks/use-steps";
 
 export const ListSteps = props => {
   const listItems = React.Children.toArray(props.children.props.children)

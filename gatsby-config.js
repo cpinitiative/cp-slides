@@ -28,7 +28,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-theme-mdx-deck',
+      resolve: require.resolve("./gatsby-theme-mdx-deck"),
       options: {
         // enable or disable gatsby-plugin-mdx
         mdx: true,

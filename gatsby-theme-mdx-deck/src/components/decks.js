@@ -11,7 +11,7 @@ export default ({ decks }) => {
         px: 4,
         py: 3,
       }}>
-      <h1>Competitive Programming Slides</h1>
+      <h1>MDX Deck</h1>
       <ul
         sx={{
           p: 0,
