@@ -1,5 +1,7 @@
 import { future } from "@mdx-deck/themes";
 import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CodeSurfer } from "code-surfer";
+import { vsDark } from "@code-surfer/themes";
 
 export const theme = future;
 
@@ -54,4 +56,56 @@ https://repl.it/
 
 ---
 
-// todo code
+<CodeSurfer theme={vsDark}>
+
+```java title="Starter Code"
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // todo: code!
+
+        out.close();
+    }
+}
+```
+
+```java 11:25 title="Step 1: Read In Input" subtitle="Note how we defined ok[i][j]."
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // todo: process billboard if i < 2
+            // todo: process truck if i = 2
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+</CodeSurfer>
