@@ -1,0 +1,45 @@
+diff --git a/node_modules/@mdx-deck/gatsby-plugin/src/use-steps.js b/node_modules/@mdx-deck/gatsby-plugin/src/use-steps.js
+index 03de62a..41d3f33 100644
+--- a/node_modules/@mdx-deck/gatsby-plugin/src/use-steps.js
++++ b/node_modules/@mdx-deck/gatsby-plugin/src/use-steps.js
+@@ -1,17 +1,32 @@
+ import React from 'react'
+-import { useDeck } from './context'
++import useDeck from "../../../../gatsby-theme-mdx-deck/src/hooks/use-deck";
++// import useDeck from './use-deck'
+ 
+ export const useSteps = length => {
+   const context = useDeck()
+-
+   React.useEffect(() => {
+-    if (!context.main) return
+-    context.setSteps(length)
+-    if (context.direction < 0) context.setStep(length)
+-  }, [length, context])
+-
+-  if (!context.main) return length
++    if (typeof context.register !== 'function') return
++    context.register(context.index, 'steps', length)
++  }, [])
++  if (context.preview) return length
+   return context.step
+ }
+ 
+ export default useSteps
++
++// export const useSteps = length => {
++//   const context = useDeck()
++//
++//   console.trace("HELLO WORLD???");
++//
++//   React.useEffect(() => {
++//     if (!context.main) return
++//     context.setSteps(length)
++//     if (context.direction < 0) context.setStep(length)
++//   }, [length, context])
++//
++//   if (!context.main) return length
++//   return context.step
++// }
++//
++// export default useSteps
