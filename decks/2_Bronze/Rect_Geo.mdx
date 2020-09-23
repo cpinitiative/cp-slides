@@ -108,4 +108,130 @@ public class billboard
 }
 ```
 
+```java 21:25 title="Update x1/y1/x2/y2" subtitle="Array indices can't be negative!"
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            // todo: if billboard, mark ok as true
+            // todo: if truck, mark ok as false
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+```java 24:31
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            for (int x = x1; x < x2; ++x){
+                for (int y = y1; y < y2; ++y) {
+                    // todo: if billboard, mark ok as true
+                    if (i < 2) ok[x][y] = 1;
+                    // todo: if truck, mark ok as false
+                    else ok[x][y] = 0;
+                }
+            }
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+```java 34:40
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            for (int x = x1; x < x2; ++x){
+                for (int y = y1; y < y2; ++y) {
+                    // todo: if billboard, mark ok as true
+                    if (i < 2) ok[x][y] = 1;
+                    // todo: if truck, mark ok as false
+                    else ok[x][y] = 0;
+                }
+            }
+        }
+
+        int ans = 0;
+        for (int x = 0; x < 2000; ++x){
+            for (int y = 0; y < 2000; ++y){
+                ans += ok[x][y];
+            }
+        }
+        out.println(ans);
+
+        out.close();
+    }
+}
+```
+
+```diff title="Questions?"
+```
+
 </CodeSurfer>
