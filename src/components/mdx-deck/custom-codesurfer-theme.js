@@ -1,7 +1,5 @@
 import { vsDark } from "@code-surfer/themes";
 
-console.log(vsDark);
-
 export const CSTheme = {
   ...vsDark,
   colors: {
