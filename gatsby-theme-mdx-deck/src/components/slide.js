@@ -31,16 +31,11 @@ export const Slide = ({ slide, index, preview, ...props }) => {
 
   return (
     <Context.Provider value={context}>
-      <div sx={{
-        bg: 'background',
-        height: context.mode === modes.print ? '100vh' : '100%',
-      }}>
         <div
           {...(!preview ? swipeProps : {})}
           sx={{
             boxSizing: 'border-box',
-            width: '80%',
-            margin: "0 auto",
+            width: '100%',
             height: context.mode === modes.print ? '100vh' : '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -72,7 +67,6 @@ export const Slide = ({ slide, index, preview, ...props }) => {
             }}
           />
         </a>
-      </div>
     </Context.Provider>
   )
 }

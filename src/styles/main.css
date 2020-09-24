@@ -1,3 +1,8 @@
 body {
     margin: 0;
 }
+
+.cs-col-layout > .cs-title {
+    padding-bottom: 0 !important;
+    background: transparent !important;
+}
