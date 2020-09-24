@@ -44,10 +44,15 @@ import java.util.*;
 
 public class template {
     public static void main(String[] args) {
-        Scanner r = new Scanner(System.in);
+        // Input:
+        // 12 243.92
+        // 100000000000000
+        // Hello!
+        Scanner r = new Scanner(System.in); // Creating a Scanner object
         int a = r.nextInt(); // Reading in an int
         double b = r.nextDouble(); // Reading in a double
         long c = r.nextLong(); // Reading in a long
+        r.nextLine(); // Since .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line and .nextLine() reads the current line, this line of code serves the purpose of advancing the reader to the next line.
         String d = r.nextLine(); // Reading in a line
     }
 }
@@ -56,6 +61,99 @@ public class template {
 ```
 
 </CodeSurfer>
+
+---
+
+## BufferedReader
+
+<ListSteps>
+
+- The second way to read input is using BufferedReader.
+- This method is quick enough for the majority of contests, so BufferedReader is preferred over Scanner.
+- Here is a sample program using BufferedReader!
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="BufferedReader Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) {
+        // Input:
+        // Hello
+        // 1
+        // 1.0
+        // 100000000000000
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
+        String a = in.readLine(); // Reading in a line
+        int a = Integer.parseInt(in.readLine()) // Integer.parseInt() converts the line into an int (the line should only have one int)
+        double b = Double.parseDouble(in.readLine()); // Double.parseDouble() converts the line into a double
+        long c = Long.parseLong(in.readLine()); // Long.parseLong() converts the line into a long
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## StringTokenizer
+
+<ListSteps>
+
+- In the example program for BufferedReader, ints, doubles, and longs could only be read if they were on a single line.
+- Using the StringTokenizer class, it is possible to read in ints, doubles, and longs on the same line.
+- The StringTokenizer variable must be reinstantiated for every line.
+- Here is a sample program using BufferedReader and StringTokenizer!
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="BufferedReader and StringTokenizer Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) {
+        // Input:
+        // 1
+        // 1 1.0 100000000000000
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
+        int a = Integer.parseInt(in.readLine()) // Reading in an int on a line by itself
+        StringTokenizer token = new StringTokenizer(in.readLine()); // Creating a StringTokenizer object that reads and stores a line
+        int b = Integer.parseInt(token.nextToken()); // Reading in an int on the line stored by the StringTokenizer
+        int c = Double.parseDouble(token.nextToken()); // Reading in a double on the line stored by the StringTokenizer
+        long d = Long.parseLong(token.nextToken()); // Reading in a long on the line stored by the StringTokenizer
+        token = new StringTokenizer(in.readLine()); // Reinstantiating the StringTokenizer object while reading and storing the next line
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## InputReader
+
+<ListSteps>
+
+- Using BufferedReader may seem very complicated, but one can use the provided custom InputReader class.
+- InputReader still uses BufferedReader
+- Here is a sample program using BufferedReader and StriInputReaderngTokenizer!
+
+</ListSteps>
 
 ---
 
