@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/:topic/:deck_name/:page", "destination": "/:topic/:deck_name/" }
+  ]
+}
