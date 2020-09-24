@@ -1,0 +1,382 @@
+import { future } from "@mdx-deck/themes";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
+import { CodeSurfer } from "code-surfer";
+import "prismjs/components/prism-java";
+
+export const theme = future;
+
+# File and Standard IO
+
+https://usaco.guide/general/io
+
+---
+
+## Standard IO
+
+<ListSteps>
+
+- In most websites (such as CodeForces and CSES), input and output are standard.
+- There are two main ways to read standard input, either using Scanner or BufferedReader.
+- Similarly, there are two main ways to write standard output, either using the System class or PrintWriter.
+
+</ListSteps>
+
+---
+
+## Scanner
+
+<ListSteps>
+
+- The first and simplest way to read input is using Scanner.
+- However, Scanner is very slow when handling large input files, so it should be avoided during a contest.
+- Here is a sample program using Scanner!
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Scanner Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) {
+        // Input:
+        // 12 243.92
+        // 100000000000000
+        // Hello!
+        Scanner r = new Scanner(System.in); // Creating a Scanner object
+        int a = r.nextInt(); // Reading in an int
+        double b = r.nextDouble(); // Reading in a double
+        long c = r.nextLong(); // Reading in a long
+        r.nextLine(); // Since .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line and .nextLine() reads the current line, this line of code serves the purpose of advancing the reader to the next line.
+        String d = r.nextLine(); // Reading in a line
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## BufferedReader
+
+<ListSteps>
+
+- The second way to read input is using BufferedReader.
+- This method is quick enough for the majority of contests, so BufferedReader is preferred over Scanner.
+- Here is a sample program using BufferedReader!
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="BufferedReader Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) {
+        // Input:
+        // Hello
+        // 1
+        // 1.0
+        // 100000000000000
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
+        String a = in.readLine(); // Reading in a line
+        int a = Integer.parseInt(in.readLine()) // Integer.parseInt() converts the line into an int (the line should only have one int)
+        double b = Double.parseDouble(in.readLine()); // Double.parseDouble() converts the line into a double
+        long c = Long.parseLong(in.readLine()); // Long.parseLong() converts the line into a long
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## StringTokenizer
+
+<ListSteps>
+
+- In the example program for BufferedReader, ints, doubles, and longs could only be read if they were on a single line.
+- Using the StringTokenizer class, it is possible to read in ints, doubles, and longs on the same line.
+- The StringTokenizer variable must be reinstantiated for every line.
+- Here is a sample program using BufferedReader and StringTokenizer!
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="BufferedReader and StringTokenizer Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) {
+        // Input:
+        // 1
+        // 1 1.0 100000000000000
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
+        int a = Integer.parseInt(in.readLine()) // Reading in an int on a line by itself
+        StringTokenizer token = new StringTokenizer(in.readLine()); // Creating a StringTokenizer object that reads and stores a line
+        int b = Integer.parseInt(token.nextToken()); // Reading in an int on the line stored by the StringTokenizer
+        int c = Double.parseDouble(token.nextToken()); // Reading in a double on the line stored by the StringTokenizer
+        long d = Long.parseLong(token.nextToken()); // Reading in a long on the line stored by the StringTokenizer
+        token = new StringTokenizer(in.readLine()); // Reinstantiating the StringTokenizer object while reading and storing the next line
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## InputReader
+
+<ListSteps>
+
+- Using BufferedReader may seem very complicated, but one can use the provided custom InputReader class.
+- InputReader still uses BufferedReader
+- Here is a sample program using BufferedReader and StriInputReaderngTokenizer!
+
+</ListSteps>
+
+---
+
+## Example
+
+[USACO 2017 Dec Bronze - Blocked Billboard](http://www.usaco.org/index.php?page=viewproblem2&cpid=759)
+
+<div>
+
+Problem Statement:
+
+Given two billboards and one truck (all rectangles), find the area of the billboards that aren’t covered by the truck.
+
+</div>
+
+---
+
+## Solution
+
+<ListSteps>
+
+- Coordinates are in the range [-1000, 1000]
+- Simply go through 2000^2 possible visible squares and check which ones are visible using nested for loops.
+- Note: You can also solve in O(1) with math!
+
+</ListSteps>
+
+https://usaco.guide/bronze/rect-geo#naive-solution
+
+---
+
+## Code Along!
+
+https://repl.it/
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Starter Code"
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // todo: code!
+
+        out.close();
+    }
+}
+```
+
+```java 11:25 title="Step 1: Read In Input" subtitle="Note how we defined ok[i][j]."
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // todo: process billboard if i < 2
+            // todo: process truck if i = 2
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+```java 21:25 title="Update x1/y1/x2/y2" subtitle="Array indices can't be negative!"
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            // todo: if billboard, mark ok as true
+            // todo: if truck, mark ok as false
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+```java 24:31
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            for (int x = x1; x < x2; ++x){
+                for (int y = y1; y < y2; ++y) {
+                    // todo: if billboard, mark ok as true
+                    if (i < 2) ok[x][y] = 1;
+                    // todo: if truck, mark ok as false
+                    else ok[x][y] = 0;
+                }
+            }
+        }
+
+        // todo: find answer
+
+        out.close();
+    }
+}
+```
+
+```java 34:40
+import java.io.*;
+import java.util.*;
+
+public class billboard
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
+        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+
+        // ok[i][j] = true if there is a visible billboard
+        int ok[][] = new int[2000][2000];
+
+        for (int i = 0; i < 3; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            // -1000 <= x <= 1000, but array indices can't be negative!
+            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
+
+            for (int x = x1; x < x2; ++x){
+                for (int y = y1; y < y2; ++y) {
+                    // todo: if billboard, mark ok as true
+                    if (i < 2) ok[x][y] = 1;
+                    // todo: if truck, mark ok as false
+                    else ok[x][y] = 0;
+                }
+            }
+        }
+
+        int ans = 0;
+        for (int x = 0; x < 2000; ++x){
+            for (int y = 0; y < 2000; ++y){
+                ans += ok[x][y];
+            }
+        }
+        out.println(ans);
+
+        out.close();
+    }
+}
+```
+
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## Keep Practicing!
+
+https://usaco.guide/bronze/rect-geo#problems
+
+- Open Q&A time. Work on another Rectangle Geometry problem!
+- Recommended next problem: [USACO 2018 Jan Bronze - Blocked Billboard II](http://www.usaco.org/index.php?page=viewproblem2&cpid=783)
+- Make sure you know how to solve this problem before continuing!
