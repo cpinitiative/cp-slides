@@ -30,7 +30,7 @@ https://usaco.guide/general/io
 
 - The first and simplest way to read input is using Scanner.
 - However, Scanner is very slow when handling large input files, so it should be avoided during a contest.
-- Here is a sample program using Scanner!
+- Here is a sample program using Scanner.
 
 </ListSteps>
 
@@ -43,7 +43,7 @@ import java.io.*;
 import java.util.*;
 
 public class template {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Input:
         // 12 243.92
         // 100000000000000
@@ -52,7 +52,8 @@ public class template {
         int a = r.nextInt(); // Reading in an int
         double b = r.nextDouble(); // Reading in a double
         long c = r.nextLong(); // Reading in a long
-        r.nextLine(); // Since .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line and .nextLine() reads the current line, this line of code serves the purpose of advancing the reader to the next line.
+        r.nextLine(); // .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line and .nextLine() reads the current line
+                      // This line of code serves the purpose of advancing the reader to the next line
         String d = r.nextLine(); // Reading in a line
     }
 }
@@ -70,7 +71,7 @@ public class template {
 
 - The second way to read input is using BufferedReader.
 - This method is quick enough for the majority of contests, so BufferedReader is preferred over Scanner.
-- Here is a sample program using BufferedReader!
+- Here is a sample program using BufferedReader.
 
 </ListSteps>
 
@@ -83,7 +84,7 @@ import java.io.*;
 import java.util.*;
 
 public class template {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Input:
         // Hello
         // 1
@@ -111,7 +112,7 @@ public class template {
 - In the example program for BufferedReader, ints, doubles, and longs could only be read if they were on a single line.
 - Using the StringTokenizer class, it is possible to read in ints, doubles, and longs on the same line.
 - The StringTokenizer variable must be reinstantiated for every line.
-- Here is a sample program using BufferedReader and StringTokenizer!
+- Here is a sample program using BufferedReader and StringTokenizer.
 
 </ListSteps>
 
@@ -124,12 +125,12 @@ import java.io.*;
 import java.util.*;
 
 public class template {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Input:
         // 1
         // 1 1.0 100000000000000
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
-        int a = Integer.parseInt(in.readLine()) // Reading in an int on a line by itself
+        int a = Integer.parseInt(in.readLine()); // Reading in an int on a line by itself
         StringTokenizer token = new StringTokenizer(in.readLine()); // Creating a StringTokenizer object that reads and stores a line
         int b = Integer.parseInt(token.nextToken()); // Reading in an int on the line stored by the StringTokenizer
         int c = Double.parseDouble(token.nextToken()); // Reading in a double on the line stored by the StringTokenizer
@@ -149,17 +150,319 @@ public class template {
 
 <ListSteps>
 
-- Using BufferedReader may seem very complicated, but one can use the provided custom InputReader class.
-- InputReader still uses BufferedReader
-- Here is a sample program using BufferedReader and StriInputReaderngTokenizer!
+- If using BufferedReader and StringTokenizer seems tedious, one can create a custom class to simplify code.
+- Here is a sample custom class called InputReader.
 
 </ListSteps>
 
 ---
 
+<CodeSurfer theme={CSTheme}>
+
+```java title="InputReader"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+        String next() { // reads in the next string
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+        public int nextInt() { return Integer.parseInt(next()); } // reads in the next int
+        public long nextLong() { return Long.parseLong(next()); } // reads in the next long
+        public double nextDouble() { return Double.parseDouble(next()); } // reads in the next double
+    }
+    static InputReader r = new InputReader(System.in);
+    public static void main(String[] args) throws IOException {
+        // Input:
+        // 1
+        // 1.0 100000000000000
+        int a = r.nextInt(); // Reading in an int
+        double b = r.nextDouble(); // Reading in a double
+        long c = r.nextLong(); // Reading in a long
+    }
+}
+
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## System Class
+
+<ListSteps>
+
+- The first way to write output is using the System class.
+- "out" is a field that is part of the System class and is the "standard" output stream.
+- The statement "System.out.println()" prints the provided parameters and then moves onto the next line.
+- The statement "System.out.print()" only prints the provided parameters.
+- The System class is fairly slow when printing large amounts of data, so it should be avoided.
+- Here is a sample program using the System class.
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="System Class Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) throws IOException {
+        // Output:
+        // 1
+        // Bye 100
+        System.out.println(1); // Prints "1" and moves to next line
+        System.out.print("Bye ") // Prints "Bye "
+        System.out.println(100); // Prints "100" and moves to next line
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## PrintWriter
+
+<ListSteps>
+
+- The second way to write output is using the System class.
+- Using PrintWriter is similar to using the System class.
+- This method of writing output is faster and preferred for contests.
+- Here is a sample program using PrintWriter.
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="PrintWriter Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) throws IOException {
+        // Output:
+        // 1
+        // Bye 100
+        PrintWriter pw = new PrintWriter(System.out);
+        pw.println(1); // Prints "1" and moves to next line
+        pw.print("Bye ") // Prints "Bye "
+        pw.println(100); // Prints "100" and moves to next line
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
 ## Example
 
-[USACO 2017 Dec Bronze - Blocked Billboard](http://www.usaco.org/index.php?page=viewproblem2&cpid=759)
+[CSES Weird Algorithm](https://cses.fi/problemset/task/1068)
+
+<div>
+
+Problem Statement:
+
+Simulate the following algorithm until n is 1:
+If n is even, the divide n by two, and if n is odd, multiply n by three and add one.
+
+</div>
+
+---
+
+## Solution
+
+<ListSteps>
+
+- Do exactly what the problem statement says!
+
+</ListSteps>
+
+https://usaco.guide/general/io#example-solution---weird-algorithm
+
+---
+
+## Code Along!
+
+https://repl.it/
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Weird Algorithm Solution"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+        String next() { // reads in the next string
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+        public int nextInt() { return Integer.parseInt(next()); } // reads in the next int
+        public long nextLong() { return Long.parseLong(next()); } // reads in the next long
+        public double nextDouble() { return Double.parseDouble(next()); } // reads in the next double
+    }
+    static InputReader r = new InputReader(System.in);
+    static PrintWriter pw = new PrintWriter(System.out);
+    public static void main(String[] args) {
+        long x = r.nextLong();
+        while (x != 1) {
+            pw.print(x+" ");
+            if (x%2 == 0) x /= 2;
+            else x = 3*x+1;
+        }
+        pw.print(x);
+        pw.close(); // flushes the output once printing is done
+    }
+}
+
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## File IO
+
+<ListSteps>
+
+- USACO requires reading input from and writing output to a file.
+- The main way to do file io is using BufferedReader and PrintWriter.
+- File io is essentially the same as standard io, but just changing the instantiation of BufferedReader and PrintWriter.
+- Here is a sample program using file io.
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="File IO"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) throws IOException {
+        // Input:
+        // 1
+        // Output:
+        // 1
+        BufferedReader br = new BufferedReader(new FileReader("file.in")); // change file.in to name of input file
+        PrintWriter pw = new PrintWriter(new FileWriter("file.out")); // change file.out to name of output file
+        int a = Integer.parseInt(br.readLine()); // Reading in an int
+        pw.print(a); // Printing "1"
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## File IO with InputReader
+
+<ListSteps>
+
+- We can also adjust InputReader to accommodate file io!
+- Note: The statement "PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("problemname.out")));"
+    is effectively the same as "PrintWriter pw = new PrintWriter(new FileWriter("problemname.out"));"
+
+</ListSteps>
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="File IO"
+import java.util.*;
+import java.io.*;
+
+public class template {
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+        public InputReader() throws FileNotFoundException {
+            reader = new BufferedReader(new FileReader("problemname.in"));
+            tokenizer = null;
+        }
+        String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+        public int nextInt() { return Integer.parseInt(next()); }
+        public long nextLong() { return Long.parseLong(next()); }
+        public double nextDouble() { return Double.parseDouble(next()); }
+    }
+    public static void main(String[] args) throws IOException {
+        InputReader r = new InputReader();
+        PrintWriter pw = new PrintWriter(new FileWriter("problemname.out"));
+        
+        // YOUR CODE HERE
+        
+        pw.close(); // flushes the output once printing is done
+    }
+}
+```
+```diff title="Questions?"
+```
+
+</CodeSurfer>
+
+---
+
+## Example
+
+[USACO 2015 Dec Bronze - Fence Painting](http://www.usaco.org/index.php?page=viewproblem2&cpid=567)
 
 <div>
 
@@ -182,12 +485,6 @@ Given two billboards and one truck (all rectangles), find the area of the billbo
 </ListSteps>
 
 https://usaco.guide/bronze/rect-geo#naive-solution
-
----
-
-## Code Along!
-
-https://repl.it/
 
 ---
 
@@ -372,11 +669,3 @@ public class billboard
 </CodeSurfer>
 
 ---
-
-## Keep Practicing!
-
-https://usaco.guide/bronze/rect-geo#problems
-
-- Open Q&A time. Work on another Rectangle Geometry problem!
-- Recommended next problem: [USACO 2018 Jan Bronze - Blocked Billboard II](http://www.usaco.org/index.php?page=viewproblem2&cpid=783)
-- Make sure you know how to solve this problem before continuing!
