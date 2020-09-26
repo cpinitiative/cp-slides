@@ -1,10 +1,14 @@
-import { future } from "@mdx-deck/themes";
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
 import ListSteps from "../../src/components/mdx-deck/ListSteps";
 import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
-import { CodeSurfer } from "code-surfer";
+import { CodeSurfer, Step } from "code-surfer";
+import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
 import "prismjs/components/prism-java";
 
-export const theme = future;
+export const theme = myTheme;
 
 # File and Standard IO
 
@@ -14,25 +18,25 @@ https://usaco.guide/general/io
 
 ## Standard IO
 
-<ListSteps>
+<Content>
 
 - In most websites (such as CodeForces and CSES), input and output are standard.
-- There are two main ways to read standard input, either using Scanner or BufferedReader.
-- Similarly, there are two main ways to write standard output, either using the System class or PrintWriter.
+- There are two main ways to read standard input, either using `Scanner` or `BufferedReader`.
+- Similarly, there are two main ways to write standard output, either using the `System` class or `PrintWriter`.
 
-</ListSteps>
+</Content>
 
 ---
 
 ## Scanner
 
-<ListSteps>
+<Content>
 
 - The first and simplest way to read input is using Scanner.
 - However, Scanner is very slow when handling large input files, so it should be avoided during a contest.
 - Here is a sample program using Scanner.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -52,13 +56,15 @@ public class template {
         int a = r.nextInt(); // Reading in an int
         double b = r.nextDouble(); // Reading in a double
         long c = r.nextLong(); // Reading in a long
-        r.nextLine(); // .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line and .nextLine() reads the current line
-                      // This line of code serves the purpose of advancing the reader to the next line
+
+        // .nextInt(), .nextDouble(), and .nextLong() do not advance the reader to the next line
+        // and .nextLine() reads the current line
+        // This line of code serves the purpose of advancing the reader to the next line
+        r.nextLine();
+
         String d = r.nextLine(); // Reading in a line
     }
 }
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -67,13 +73,13 @@ public class template {
 
 ## BufferedReader
 
-<ListSteps>
+<Content>
 
 - The second way to read input is using BufferedReader.
 - This method is quick enough for the majority of contests, so BufferedReader is preferred over Scanner.
 - Here is a sample program using BufferedReader.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -90,15 +96,22 @@ public class template {
         // 1
         // 1.0
         // 100000000000000
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
+
+        // Creating a BufferedReader object
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
         String a = in.readLine(); // Reading in a line
-        int a = Integer.parseInt(in.readLine()) // Integer.parseInt() converts the line into an int (the line should only have one int)
-        double b = Double.parseDouble(in.readLine()); // Double.parseDouble() converts the line into a double
-        long c = Long.parseLong(in.readLine()); // Long.parseLong() converts the line into a long
+
+        // Integer.parseInt() converts the line into an int (the line should only have one int)
+        int a = Integer.parseInt(in.readLine())
+
+        // Double.parseDouble() converts the line into a double
+        double b = Double.parseDouble(in.readLine());
+
+        // Long.parseLong() converts the line into a long
+        long c = Long.parseLong(in.readLine());
     }
 }
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -107,14 +120,14 @@ public class template {
 
 ## StringTokenizer
 
-<ListSteps>
+<Content>
 
-- In the example program for BufferedReader, ints, doubles, and longs could only be read if they were on a single line.
-- Using the StringTokenizer class, it is possible to read in ints, doubles, and longs on the same line.
-- The StringTokenizer variable must be reinstantiated for every line.
+- In the example program for `BufferedReader`, ints, doubles, and longs could only be read if they were on a single line.
+- Using the `StringTokenizer` class, it is possible to read in ints, doubles, and longs **on the same line**.
+- The `StringTokenizer` variable must be reinstantiated for every line.
 - Here is a sample program using BufferedReader and StringTokenizer.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -129,17 +142,29 @@ public class template {
         // Input:
         // 1
         // 1 1.0 100000000000000
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); // Creating a BufferedReader object
-        int a = Integer.parseInt(in.readLine()); // Reading in an int on a line by itself
-        StringTokenizer token = new StringTokenizer(in.readLine()); // Creating a StringTokenizer object that reads and stores a line
-        int b = Integer.parseInt(token.nextToken()); // Reading in an int on the line stored by the StringTokenizer
-        int c = Double.parseDouble(token.nextToken()); // Reading in a double on the line stored by the StringTokenizer
-        long d = Long.parseLong(token.nextToken()); // Reading in a long on the line stored by the StringTokenizer
-        token = new StringTokenizer(in.readLine()); // Reinstantiating the StringTokenizer object while reading and storing the next line
+
+        // Creating a BufferedReader object
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+        // Reading in an int on a line by itself
+        int a = Integer.parseInt(in.readLine());
+
+        // Creating a StringTokenizer object that reads and stores a line
+        StringTokenizer token = new StringTokenizer(in.readLine());
+
+        // Reading in an int on the line stored by the StringTokenizer
+        int b = Integer.parseInt(token.nextToken());
+
+        // Reading in a double on the line stored by the StringTokenizer
+        int c = Double.parseDouble(token.nextToken());
+
+        // Reading in a long on the line stored by the StringTokenizer
+        long d = Long.parseLong(token.nextToken());
+
+        // Reinstantiating the StringTokenizer object while reading and storing the next line
+        token = new StringTokenizer(in.readLine());
     }
 }
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -148,12 +173,12 @@ public class template {
 
 ## InputReader
 
-<ListSteps>
+<Content>
 
 - If using BufferedReader and StringTokenizer seems tedious, one can create a custom class to simplify code.
 - Here is a sample custom class called InputReader.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -195,9 +220,6 @@ public class template {
         long c = r.nextLong(); // Reading in a long
     }
 }
-
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -206,16 +228,15 @@ public class template {
 
 ## System Class
 
-<ListSteps>
+<Content>
 
 - The first way to write output is using the System class.
 - "out" is a field that is part of the System class and is the "standard" output stream.
 - The statement "System.out.println()" prints the provided parameters and then moves onto the next line.
 - The statement "System.out.print()" only prints the provided parameters.
 - The System class is fairly slow when printing large amounts of data, so it should be avoided.
-- Here is a sample program using the System class.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -236,8 +257,6 @@ public class template {
     }
 }
 ```
-```diff title="Questions?"
-```
 
 </CodeSurfer>
 
@@ -245,14 +264,13 @@ public class template {
 
 ## PrintWriter
 
-<ListSteps>
+<Content>
 
 - The second way to write output is using the System class.
 - Using PrintWriter is similar to using the System class.
 - This method of writing output is faster and preferred for contests.
-- Here is a sample program using PrintWriter.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -274,8 +292,6 @@ public class template {
     }
 }
 ```
-```diff title="Questions?"
-```
 
 </CodeSurfer>
 
@@ -285,14 +301,14 @@ public class template {
 
 [CSES Weird Algorithm](https://cses.fi/problemset/task/1068)
 
-<div>
+<Content>
 
-Problem Statement:
+**Problem Statement**: Simulate the following algorithm until n is 1:
 
-Simulate the following algorithm until n is 1:
-If n is even, the divide n by two, and if n is odd, multiply n by three and add one.
+- If n is even, the divide n by two
+- if n is odd, multiply n by three and add one.
 
-</div>
+</Content>
 
 ---
 
@@ -315,6 +331,45 @@ https://repl.it/
 ---
 
 <CodeSurfer theme={CSTheme}>
+
+```java title="Starter Code"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+        String next() { // reads in the next string
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+        public int nextInt() { return Integer.parseInt(next()); } // reads in the next int
+        public long nextLong() { return Long.parseLong(next()); } // reads in the next long
+        public double nextDouble() { return Double.parseDouble(next()); } // reads in the next double
+    }
+    static InputReader r = new InputReader(System.in);
+    static PrintWriter pw = new PrintWriter(System.out);
+    public static void main(String[] args) {
+        long x = r.nextLong();
+
+        // todo: Solve the problem!
+
+        pw.close(); // flushes the output once printing is done
+    }
+}
+```
+
 
 ```java title="Weird Algorithm Solution"
 import java.io.*;
@@ -345,19 +400,19 @@ public class template {
     static InputReader r = new InputReader(System.in);
     static PrintWriter pw = new PrintWriter(System.out);
     public static void main(String[] args) {
+        // note how we used long, since int would overflow!
         long x = r.nextLong();
+
         while (x != 1) {
             pw.print(x+" ");
             if (x%2 == 0) x /= 2;
             else x = 3*x+1;
         }
         pw.print(x);
+
         pw.close(); // flushes the output once printing is done
     }
 }
-
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -366,14 +421,13 @@ public class template {
 
 ## File IO
 
-<ListSteps>
+<Content>
 
 - USACO requires reading input from and writing output to a file.
 - The main way to do file io is using BufferedReader and PrintWriter.
 - File io is essentially the same as standard io, but just changing the instantiation of BufferedReader and PrintWriter.
-- Here is a sample program using file io.
 
-</ListSteps>
+</Content>
 
 ---
 
@@ -389,14 +443,16 @@ public class template {
         // 1
         // Output:
         // 1
-        BufferedReader br = new BufferedReader(new FileReader("file.in")); // change file.in to name of input file
-        PrintWriter pw = new PrintWriter(new FileWriter("file.out")); // change file.out to name of output file
+
+        // change file.in to name of input file
+        BufferedReader br = new BufferedReader(new FileReader("file.in"));
+        // change file.out to name of output file
+        PrintWriter pw = new PrintWriter(new FileWriter("file.out"));
+
         int a = Integer.parseInt(br.readLine()); // Reading in an int
         pw.print(a); // Printing "1"
     }
 }
-```
-```diff title="Questions?"
 ```
 
 </CodeSurfer>
@@ -405,13 +461,22 @@ public class template {
 
 ## File IO with InputReader
 
-<ListSteps>
+<Content>
 
 - We can also adjust InputReader to accommodate file io!
-- Note: The statement "PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("problemname.out")));"
-    is effectively the same as "PrintWriter pw = new PrintWriter(new FileWriter("problemname.out"));"
+- Note: The statement
 
-</ListSteps>
+  ```java
+  PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("problemname.out")));
+  ```
+
+  is effectively the same as
+
+  ```java
+  PrintWriter pw = new PrintWriter(new FileWriter("problemname.out"));
+  ```
+
+</Content>
 
 ---
 
@@ -453,8 +518,6 @@ public class template {
     }
 }
 ```
-```diff title="Questions?"
-```
 
 </CodeSurfer>
 
@@ -464,13 +527,13 @@ public class template {
 
 [USACO 2015 Dec Bronze - Fence Painting](http://www.usaco.org/index.php?page=viewproblem2&cpid=567)
 
-<div>
+<Content>
 
 Problem Statement:
 
 Given two billboards and one truck (all rectangles), find the area of the billboards that aren’t covered by the truck.
 
-</div>
+</Content>
 
 ---
 
