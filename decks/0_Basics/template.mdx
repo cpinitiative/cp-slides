@@ -1,11 +1,14 @@
-import { future } from "@mdx-deck/themes";
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
 import ListSteps from "../../src/components/mdx-deck/ListSteps";
 import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
 import { CodeSurfer, Step } from "code-surfer";
 import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
 import "prismjs/components/prism-java";
 
-export const theme = future;
+export const theme = myTheme;
 
 # Rectangle Geometry (Template)
 
