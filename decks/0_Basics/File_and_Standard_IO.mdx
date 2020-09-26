@@ -32,9 +32,9 @@ https://usaco.guide/general/io
 
 <Content>
 
-- The first and simplest way to read input is using Scanner.
-- However, Scanner is very slow when handling large input files, so it should be avoided during a contest.
-- Here is a sample program using Scanner.
+- The first and simplest way to read input is using `Scanner`.
+- However, `Scanner` is very slow when handling large input files, so it should be avoided during a contest.
+- Here is a sample program using `Scanner`.
 
 </Content>
 
@@ -75,9 +75,9 @@ public class template {
 
 <Content>
 
-- The second way to read input is using BufferedReader.
-- This method is quick enough for the majority of contests, so BufferedReader is preferred over Scanner.
-- Here is a sample program using BufferedReader.
+- The second way to read input is using `BufferedReader`.
+- This method is quick enough for the majority of contests, so `BufferedReader` is preferred over `Scanner`.
+- Here is a sample program using `BufferedReader`.
 
 </Content>
 
@@ -125,7 +125,7 @@ public class template {
 - In the example program for `BufferedReader`, ints, doubles, and longs could only be read if they were on a single line.
 - Using the `StringTokenizer` class, it is possible to read in ints, doubles, and longs **on the same line**.
 - The `StringTokenizer` variable must be reinstantiated for every line.
-- Here is a sample program using BufferedReader and StringTokenizer.
+- Here is a sample program using `BufferedReader` and `StringTokenizer`.
 
 </Content>
 
@@ -175,8 +175,8 @@ public class template {
 
 <Content>
 
-- If using BufferedReader and StringTokenizer seems tedious, one can create a custom class to simplify code.
-- Here is a sample custom class called InputReader.
+- If using `BufferedReader` and `StringTokenizer` seems tedious, one can create a custom class to simplify code.
+- Here is a sample custom class called `InputReader`.
 
 </Content>
 
@@ -230,11 +230,11 @@ public class template {
 
 <Content>
 
-- The first way to write output is using the System class.
-- "out" is a field that is part of the System class and is the "standard" output stream.
+- The first way to write output is using the `System` class.
+- "out" is a field that is part of the `System` class and is the "standard" output stream.
 - The statement "System.out.println()" prints the provided parameters and then moves onto the next line.
 - The statement "System.out.print()" only prints the provided parameters.
-- The System class is fairly slow when printing large amounts of data, so it should be avoided.
+- The `System` class is fairly slow when printing large amounts of data, so it should be avoided.
 
 </Content>
 
@@ -266,8 +266,8 @@ public class template {
 
 <Content>
 
-- The second way to write output is using the System class.
-- Using PrintWriter is similar to using the System class.
+- The second way to write output is using `PrintWriter`.
+- Using `PrintWriter` is similar to using the `System` class.
 - This method of writing output is faster and preferred for contests.
 
 </Content>
@@ -332,7 +332,7 @@ https://repl.it/
 
 <CodeSurfer theme={CSTheme}>
 
-```java title="Starter Code"
+```java title="Weird Algorithm Solution"
 import java.io.*;
 import java.util.*;
 
@@ -424,8 +424,8 @@ public class template {
 <Content>
 
 - USACO requires reading input from and writing output to a file.
-- The main way to do file io is using BufferedReader and PrintWriter.
-- File io is essentially the same as standard io, but just changing the instantiation of BufferedReader and PrintWriter.
+- The main way to do file io is using `BufferedReader` and `PrintWriter`.
+- File io is essentially the same as standard io, but just changing the instantiation of `BufferedReader` and `PrintWriter`.
 
 </Content>
 
@@ -463,7 +463,7 @@ public class template {
 
 <Content>
 
-- We can also adjust InputReader to accommodate file io!
+- We can also adjust `InputReader` to accommodate file io!
 - Note: The statement
 
   ```java
@@ -529,9 +529,8 @@ public class template {
 
 <Content>
 
-Problem Statement:
-
-Given two billboards and one truck (all rectangles), find the area of the billboards that aren’t covered by the truck.
+**Problem Statement**: Bessie and Farmer John both paint an interval of a fence (treated as a number line).
+Given the two intervals, find the total length of the fence that is painted.
 
 </Content>
 
@@ -541,191 +540,47 @@ Given two billboards and one truck (all rectangles), find the area of the billbo
 
 <ListSteps>
 
-- Coordinates are in the range [-1000, 1000]
-- Simply go through 2000^2 possible visible squares and check which ones are visible using nested for loops.
+- Endpoints are in the range [0, 100]
+- Create an array of length 100 that stores whether or not each segment of length 1 is painted.
+- Simply go through both intervals and mark all corresponding segments as painted.
+- Loop through array and count up the number of painted segments.
 - Note: You can also solve in O(1) with math!
 
 </ListSteps>
 
-https://usaco.guide/bronze/rect-geo#naive-solution
+https://usaco.guide/general/io#example-solution---fence-painting
 
 ---
 
 <CodeSurfer theme={CSTheme}>
 
-```java title="Starter Code"
+```java title="Fence Painting Solution"
+
 import java.io.*;
 import java.util.*;
 
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
+public class paintSol { // must be declared in paintSol.java
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("paint.in"));
+        PrintWriter pw = new PrintWriter(new FileWriter("paint.out"));
+        
+        int[] cover = new int[100];
 
-        // todo: code!
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken()), b = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        int c = Integer.parseInt(st.nextToken()), d = Integer.parseInt(st.nextToken());
 
-        out.close();
-    }
-}
-```
-
-```java 11:25 title="Step 1: Read In Input" subtitle="Note how we defined ok[i][j]."
-import java.io.*;
-import java.util.*;
-
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // todo: process billboard if i < 2
-            // todo: process truck if i = 2
-        }
-
-        // todo: find answer
-
-        out.close();
-    }
-}
-```
-
-```java 21:25 title="Update x1/y1/x2/y2" subtitle="Array indices can't be negative!"
-import java.io.*;
-import java.util.*;
-
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // -1000 <= x <= 1000, but array indices can't be negative!
-            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
-
-            // todo: if billboard, mark ok as true
-            // todo: if truck, mark ok as false
-        }
-
-        // todo: find answer
-
-        out.close();
-    }
-}
-```
-
-```java 24:31
-import java.io.*;
-import java.util.*;
-
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // -1000 <= x <= 1000, but array indices can't be negative!
-            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
-
-            for (int x = x1; x < x2; ++x){
-                for (int y = y1; y < y2; ++y) {
-                    // todo: if billboard, mark ok as true
-                    if (i < 2) ok[x][y] = 1;
-                    // todo: if truck, mark ok as false
-                    else ok[x][y] = 0;
-                }
-            }
-        }
-
-        // todo: find answer
-
-        out.close();
-    }
-}
-```
-
-```java 34:40
-import java.io.*;
-import java.util.*;
-
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // -1000 <= x <= 1000, but array indices can't be negative!
-            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
-
-            for (int x = x1; x < x2; ++x){
-                for (int y = y1; y < y2; ++y) {
-                    // todo: if billboard, mark ok as true
-                    if (i < 2) ok[x][y] = 1;
-                    // todo: if truck, mark ok as false
-                    else ok[x][y] = 0;
-                }
-            }
-        }
-
+        for (int i = a; i < b; i++) cover[i] = 1;
+        for (int i = c; i < d; i++) cover[i] = 1;
         int ans = 0;
-        for (int x = 0; x < 2000; ++x){
-            for (int y = 0; y < 2000; ++y){
-                ans += ok[x][y];
-            }
-        }
-        out.println(ans);
-
-        out.close();
+        for (int i = 0; i < 100; i++) ans += cover[i];
+        pw.println(ans);
+        pw.close(); // make sure to include this line -- flushes the output.
     }
 }
-```
 
+```
 ```diff title="Questions?"
 ```
 
