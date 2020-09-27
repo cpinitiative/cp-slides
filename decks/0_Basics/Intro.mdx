@@ -114,7 +114,7 @@ We're going over a slightly simplified version.
 
 <Content>
 
-Given $n$ towers $(1 \le n \le 10^5)$, create bridges between towers such that there are $p[i][j]$ $(0 \le p[i][j] \le 2)$ different paths from tower $i$ to tower $j$ (or say that it's impossible).
+Given $n$ towers $(1 \le n \le 10^5)$, create bridges between towers such that there are $p[i][j]$ $(0 \le p[i][j] \le 2)$ different paths from tower $i$ to tower $j$ (assume there's always a solution).
 
 </Content>
 
@@ -246,7 +246,7 @@ For each "group" of connected towers, pick one tower. Add a bridge from that tow
 ## Subtask 3
 
 $$
-p[i][j] = 0 \texttt{ or } 1 \texttt{ or } 2
+p[i][j] = 0 \texttt{ or } 2
 $$
 
 (Assume there's always a solution.)
@@ -255,6 +255,36 @@ $$
 
 ## Subtask 3 Solution
 
+import img3 from "./supertrees_diag3.png";
+
+<Content>
+
+For each connected group, add bridges to make a circle of towers.
+
+<img src={img3} />
+
+</Content>
+
+---
+
+## Subtask 3 Code
+
+// todo: repl.it
+
+---
+
+## Subtask 4
+
+$$
+p[i][j] = 0 \texttt{ or } 1 \texttt{ or } 2
+$$
+
+(Assume there's always a solution.)
+
+---
+
+## Subtask 4 Solution
+
 <Content>
 
 - For each "group" of connected towers, note that all the towers in that group are either connected to each other with $1$ path or $2$ paths, but never a mix of both.
@@ -262,3 +292,17 @@ $$
 - If a group is connected with $2$ paths, add bridges to make a circle of towers.
 
 </Content>
+
+---
+
+## Subtask 4 Code
+
+// todo: repl.it
+
+---
+
+## Feedback
+
+Help us make our meetings better!
+
+https://forms.gle/Qd1d6AjwMA8x3evA7
