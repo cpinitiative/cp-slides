@@ -23,6 +23,13 @@ export const myTheme = {
     },
     code: {
       textAlign: "left"
+    },
+    p: {
+      marginTop: "0",
+      marginBottom: "0.5em",
+    },
+    pre: {
+      margin: "0"
     }
   }
 };

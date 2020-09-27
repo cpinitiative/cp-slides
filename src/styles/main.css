@@ -6,3 +6,8 @@ body {
     padding-bottom: 0 !important;
     background: transparent !important;
 }
+
+.katex-display {
+    margin-top: 0 !important;
+    margin-bottom: 0.25em !important;
+}
