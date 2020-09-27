@@ -1,7 +1,5 @@
 import { future } from "@mdx-deck/themes";
 
-console.log(future);
-
 export const myTheme = {
   ...future,
   styles: {
@@ -23,5 +21,8 @@ export const myTheme = {
     h6: {
       letterSpacing: 0
     },
+    code: {
+      textAlign: "left"
+    }
   }
 };

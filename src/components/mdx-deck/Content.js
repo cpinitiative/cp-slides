@@ -6,7 +6,7 @@ const Content = props => (
   <div sx={{
     width: "80%",
     margin: "0 auto",
-    fontSize: "2rem",
+    fontSize: ["1rem", "1.5rem", "1.5rem", "2rem"],
     color: "#CBD5E0",
     display: "flex",
     flexDirection: "column",

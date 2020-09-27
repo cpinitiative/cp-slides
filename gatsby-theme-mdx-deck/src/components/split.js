@@ -11,6 +11,7 @@ export const Split = ({ children, ...props }) => {
         display: 'flex',
         alignItems: 'center',
         height: '100%',
+        width: "100%",
         textAlign: 'center',
       }}>
       <div sx={{ width: '50%' }}>{first}</div>

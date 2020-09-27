@@ -46,7 +46,7 @@ programmingcompetitive@gmail.com
 
 <Content>
 
-<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", maxWidth: "800px", margin: "2rem auto" }}>
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridGap: "3rem", margin: "2rem auto" }}>
 
 - File / Standard IO
 - Time Complexity
@@ -90,8 +90,175 @@ programmingcompetitive@gmail.com
 
 ---
 
-## Today
+## Poll: Beginner or Advanced?
 
-- Beginners: [I/O](/0_Basics/File_and_Standard_IO), Rectangle Geometry -- Solve our first problem!
-- Advanced: Self-study USACO Guide, ask questions if you have any :)
-- Quick Poll (Beginner or Advanced)
+Check "yes" for Beginner, "no" for Advanced
+
+---
+
+## Today: IOI Supertrees!
+
+https://oj.uz/problem/view/IOI20_supertrees
+
+<Content>
+
+(This is a hard problem, so don't worry if you don't fully understand the solution!)
+
+We're going over a slightly simplified version.
+
+</Content>
+
+---
+
+## Problem Statement
+
+<Content>
+
+Given $n$ towers $(1 \le n \le 10^5)$, create bridges between towers such that there are $p[i][j]$ $(0 \le p[i][j] \le 2)$ different paths from tower $i$ to tower $j$ (or say that it's impossible).
+
+</Content>
+
+---
+
+import img from "./supertrees_diag1.png";
+
+<Split>
+
+<!-- the bars are there to make sure everything is aligned properly -->
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 2 2]   |
+|   1 [1 1 2 2]   |
+|   2 [2 2 1 2]   |
+|   3 [2 2 2 1]   |
+```
+
+<Appear>
+
+<div>
+
+Output:
+
+<img src={img} />
+
+
+```
+|   Answer:       |
+|                 |
+|      0 1 2 3    |
+|   0 [0 1 0 0]   |
+|   1 [1 0 1 1]   |
+|   2 [0 1 0 1]   |
+|   3 [0 1 1 0]   |
+```
+
+</div>
+
+</Appear>
+
+</Split>
+
+---
+
+## Subtask 1
+
+$$
+p[i][j] = 1
+$$
+
+---
+
+## Subtask 1 Solution
+
+<Appear>
+
+Connect tower $0$ to all the other towers!
+
+```
+|  Answer if n=4: |
+|                 |
+|      0 1 2 3    |
+|   0 [0 1 1 1]   |
+|   1 [1 0 0 0]   |
+|   2 [1 0 0 0]   |
+|   3 [1 0 0 0]   |
+```
+
+</Appear>
+
+---
+
+## Code!
+
+// todo: repl.it
+
+---
+
+## Subtask 2
+
+$$
+p[i][j] = 0 \texttt{ or } 1
+$$
+
+(Assume there's always a solution.)
+
+<Split>
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 0 0]   |
+|   1 [1 1 0 0]   |
+|   2 [0 0 1 1]   |
+|   3 [0 0 1 1]   |
+```
+
+import img2 from "./supertrees_diag2.png";
+
+<img src={img2} />
+
+</Split>
+
+---
+
+## Subtask 2 Solution
+
+<Content>
+
+For each "group" of connected towers, pick one tower. Add a bridge from that tower to every other tower in the group.
+
+</Content>
+
+---
+
+## Subtask 2 Code
+
+// todo
+
+---
+
+## Subtask 3
+
+$$
+p[i][j] = 0 \texttt{ or } 1 \texttt{ or } 2
+$$
+
+(Assume there's always a solution.)
+
+---
+
+## Subtask 3 Solution
+
+<Content>
+
+- For each "group" of connected towers, note that all the towers in that group are either connected to each other with $1$ path or $2$ paths, but never a mix of both.
+- If a group is connected with $1$ path, add a bridge from one node to every other towers.
+- If a group is connected with $2$ paths, add bridges to make a circle of towers.
+
+</Content>
