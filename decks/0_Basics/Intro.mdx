@@ -345,31 +345,53 @@ $$
 p[i][j] = 0 \texttt{ or } 2
 $$
 
-(Assume there's always a solution.)
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,2,0,2}
+{0,0,2,1,0,2}
+{2,2,0,0,1,0}
+{0,0,2,2,0,1}
+```
 
 ---
 
 ## Subtask 3 Solution
 
+<Split>
+
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,2,0,2}
+{0,0,2,1,0,2}
+{2,2,0,0,1,0}
+{0,0,2,2,0,1}
+```
+
 import img3 from "./supertrees_diag3.png";
-
-<Content>
-
-For each connected group, add bridges to make a circle of towers.
 
 <img src={img3} />
 
+</Split>
+
+<div style={{ marginBottom: "2em" }}>
+
+<Content>
+
+<Appear>
+
+For each connected group, add bridges to make a circle of towers.
+
+</Appear>
+
 </Content>
 
----
-
-## Subtask 3 Code
-
-// todo: repl.it
+</div>
 
 ---
 
-## Subtask 4
+## Subtask 4a
 
 $$
 p[i][j] = 0 \texttt{ or } 1 \texttt{ or } 2
@@ -377,59 +399,81 @@ $$
 
 (Assume there's always a solution.)
 
-<Split>
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,1,0,1}
+{0,0,1,1,0,1}
+{2,2,0,0,1,0}
+{0,0,1,1,0,1}
+```
+
+---
+
+## Subtask 4a Solution
 
 ```
-Ex:
-   0 1 2 3 4 5‎‏‏‎ ‎
-0 [1 1 1 2 2 2]
-1 [1 1 1 2 2 2]
-2 [1 1 1 2 2 2]
-3 [2 2 2 1 2 2]
-4 [2 2 2 2 1 2]
-5 [2 2 2 2 2 1]
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,1,0,1}
+{0,0,1,1,0,1}
+{2,2,0,0,1,0}
+{0,0,1,1,0,1}
 ```
 
 import img4 from "./supertrees_diag4.png";
 
 <img src={img4} />
 
-</Split>
+---
+
+## Subtask 4b
+
+```
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{2,2,2,1,2,2}
+{2,2,2,2,1,2}
+{2,2,2,2,2,1}
+```
 
 ---
 
-## Subtask 4 Solution
+## Subtask 4b solution
+
+import img7 from "./supertrees_diag7.png"
+
+<Split>
+
+```
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{2,2,2,1,2,2}
+{2,2,2,2,1,2}
+{2,2,2,2,2,1}
+```
+
+<img src={img7} />
+
+</Split>
 
 <Content>
+
+<div style={{ marginBottom: "2em" }}>
+
+<Appear>
 
 - For each "group" of connected towers, pick a random tower $i$.
 - For all towers $j$ connected to it by $1$ path, add a single bridge from $i \rightarrow j$.
 - Form a cycle with the towers connected to $i$ by $2$ paths.
 
+</Appear>
+
+</div>
+
 </Content>
-
-<Split>
-
-```
-Ex:
-   0 1 2 3 4 5‎‏‏‎ ‎
-0 [1 1 1 2 2 2]
-1 [1 1 1 2 2 2]
-2 [1 1 1 2 2 2]
-3 [2 2 2 1 2 2]
-4 [2 2 2 2 1 2]
-5 [2 2 2 2 2 1]
-```
-
-<img src={img4} />
-
-</Split>
-
----
-
-## Subtask 4 Code
-
-// todo: repl.it
 
 ---
 
