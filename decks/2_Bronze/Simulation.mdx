@@ -10,7 +10,7 @@ import "prismjs/components/prism-java";
 
 export const theme = myTheme;
 
-# Simulation (Template)
+# Simulation
 
 https://usaco.guide/bronze/simulation
 
@@ -18,12 +18,14 @@ https://usaco.guide/bronze/simulation
 
 ## Simulation
 
+<Content>
 <ListSteps>
 
 - Problems that simply involve directly simulating the the problem statement.
 - Assesses competence with one's programming language of choice and knowledge of built-in data structures.
 
 </ListSteps>
+</Content>
 
 ---
 
@@ -31,7 +33,7 @@ https://usaco.guide/bronze/simulation
 
 https://usaco.guide/bronze/simulation#example-1
 
-<div>
+<Content>
 
 Problem Statement:
 
@@ -41,12 +43,13 @@ Every second, Alice moves $M$ units to the right, and $N$ units up.
 Every second, Bob moves $P$ units to the left, and $Q$ units down. ($1 \leq M, N, P, Q \leq 10$).
 Determine if Alice and Bob will ever meet (be at the same point at the same time), and if so, when.
 
-</div>
+</Content>
 
 ---
 
 ## Solution
 
+<Content>
 <ListSteps>
 
 - Simulate the process second by second!
@@ -55,321 +58,94 @@ Determine if Alice and Bob will ever meet (be at the same point at the same time
 - Since Alice and Bob's coordinates are in the range [0, 1000], simulation runs in time.
 
 </ListSteps>
+</Content>
 
 https://usaco.guide/bronze/simulation#solution
 
 ---
 
-## Code Along!
+<CodeSurfer theme={CSTheme}>
 
-https://repl.it/
+```java
+int ax = 0; int ay = 0; // alice's x and y coordinates
+int bx = r; int by = s; // bob's x and y coordinates
+int t = 0; // keep track of the current time
+while(ax < bx && ay < by){
+    // every second, update alice's and bob's coordinates and the time
+    ax += m; ay += n;
+    bx -= p; by -= q;
+    t++;
+}
+if(ax == bx && ay == by){ // if they are in the same location
+    pw.println(t); // they meet at time t
+} else {
+    pw.println(-1); // they never meet
+}
+pw.close(); // flush the output
+```
+
+</CodeSurfer>
 
 ---
 
-<CodeSurferColumns themes={[CSTheme, CSTheme]}>
+## Example 2
 
-<Step title="Starter Code" subtitle="We assume the input is stored within their respective variables.">
+<Content>
 
-```java
+There are $N$ buckets ($5 \leq N \leq 10^5$), each with a certain capacity $C_i$ ($1 \leq C_i \leq 100$). One day, after a rainstorm, each bucket is filled with $A_i$ units of water ($1\leq A_i \leq C_i$). Charlie then performs the following process: he pours bucket $1$ into bucket $2$, then bucket $2$ into bucket $3$, and so on, up until pouring bucket $N-1$ into bucket $N$. When Charlie pours bucket $B$ into bucket $B+1$, he pours as much as possible until bucket $B$ is empty or bucket $B+1$ is full. Find out how much water is in each bucket once Charlie is done pouring.
 
-int ax = 0; int ay = 0; // alice's x and y coordinates
-int bx = r; int by = s; // bob's x and y coordinates
+</Content>
 
-// todo: simulate process
-// todo: output answer
+---
 
-```
+## Solution
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
+<Content>
+<ListSteps>
 
-bool ok[2000][2000];
+- Simulate the process!
+- Amount of water poured is smaller of water in bucket $B$ and remaining space in $B+1$
 
-int main() {
-    freopen("billboard.in","r",stdin);
-    freopen("billboard.out","w",stdout);
+</ListSteps>
+</Content>
 
-    // todo: code!
-}
-```
+https://usaco.guide/bronze/simulation#solution
 
-</Step>
+---
 
-<Step title="Step 1: Simulate the process" subtitle="Keep track of time at each step!">
-
-```java 11:25
-
-int ax = 0; int ay = 0; // alice's x and y coordinates
-int bx = r; int by = s; // bob's x and y coordinates
-int t = 0; // keep track of the current time
-while(ax < bx && ay < by){
-    // every second, update alice's and bob's coordinates and the time
-    ax += m; ay += n;
-    bx -= p; by -= q;
-    t++;
-}
-if(ax == bx && ay == by){ // if they are in the same location
-    pw.println(t); // they meet at time t
-} else {
-    pw.println(-1); // they never meet
-}
-pw.close(); // flush the output
-
-```
-
-```cpp 4:5,11:18
-#include <bits/stdc++.h>
-using namespace std;
-
-// ok[i][j] = true if there is a visible billboard
-bool ok[2000][2000];
-
-int main() {
-    freopen("billboard.in","r",stdin);
-    freopen("billboard.out","w",stdout);
-
-    for (int i = 0; i < 3; ++i) {
-        int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-
-        // todo: process billboard if i < 2
-        // todo: process truck if i = 2
-    }
-
-    // todo: find answer
-}
-```
-
-</Step>
-
-<Step title="Update x1/y1/x2/y2" subtitle="Array indices can't be negative!">
+<CodeSurfer theme={CSTheme}>
 
 ```java
+for(int i = 0; i < n-1; i++){
+    // the amount of water to be poured is the lesser of
+    // the amount of water in the current bucket and
+    // the amount of additional water that the next bucket can hold
+    int amt = Math.min(A[i], C[i+1]-A[i+1]);
 
-int ax = 0; int ay = 0; // alice's x and y coordinates
-int bx = r; int by = s; // bob's x and y coordinates
-int t = 0; // keep track of the current time
-while(ax < bx && ay < by){
-    // every second, update alice's and bob's coordinates and the time
-    ax += m; ay += n;
-    bx -= p; by -= q;
-    t++;
+    A[i] -= amt; // remove the amount from the current bucket
+    A[i+1] += amt; // add it to the next bucket
 }
-if(ax == bx && ay == by){ // if they are in the same location
-    pw.println(t); // they meet at time t
-} else {
-    pw.println(-1); // they never meet
-}
-pw.close(); // flush the output
-```
 
-```
-#include <bits/stdc++.h>
-using namespace std;
-
-// ok[i][j] = true if there is a visible billboard
-bool ok[2000][2000];
-
-int main() {
-    freopen("billboard.in","r",stdin);
-    freopen("billboard.out","w",stdout);
-
-    for (int i = 0; i < 3; ++i) {
-        int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-
-        // -1000 <= x <= 1000, but array indices can't be negative!
-        x1 += 1000, y1 += 1000, x2 += 1000, y2 += 1000;
-
-        // todo: if billboard, mark ok as true
-        // todo: if truck, mark ok as false
-    }
-
-    // todo: find answer
+for(int i = 0; i < n; i++){
+    pw.print(A[i] + " ");
+    // print the amount of water in each bucket at the end
 }
 ```
 
-</Step>
+</CodeSurfer>
 
-<Step>
+---
 
-```java 24:31
-import java.io.*;
-import java.util.*;
+# Your Turn!
 
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // -1000 <= x <= 1000, but array indices can't be negative!
-            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
-
-            for (int x = x1; x < x2; ++x){
-                for (int y = y1; y < y2; ++y) {
-                    // todo: if billboard, mark ok as true
-                    if (i < 2) ok[x][y] = 1;
-                    // todo: if truck, mark ok as false
-                    else ok[x][y] = 0;
-                }
-            }
-        }
-
-        // todo: find answer
-
-        out.close();
-    }
-}
-```
-
-```
-#include <bits/stdc++.h>
-using namespace std;
-
-// ok[i][j] = true if there is a visible billboard
-bool ok[2000][2000];
-
-int main() {
-    freopen("billboard.in","r",stdin);
-    freopen("billboard.out","w",stdout);
-
-    for (int i = 0; i < 3; ++i) {
-        int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-
-        // -1000 <= x <= 1000, but array indices can't be negative!
-        x1 += 1000, y1 += 1000, x2 += 1000, y2 += 1000;
-
-        for (int x = x1; x < x2; ++x) {
-            for (int y = y1; y < y2; ++y) {
-                // todo: if billboard, mark ok as true
-                if (i < 2) ok[x][y] = 1;
-                // todo: if truck, mark ok as false
-                else ok[x][y] = 0;
-            }
-        }
-    }
-
-    // todo: find answer
-}
-```
-
-</Step>
-
-<Step>
-
-```java 34:40
-import java.io.*;
-import java.util.*;
-
-public class billboard
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
-        PrintWriter out = new PrintWriter(new FileWriter("billboard.out"));
-
-        // ok[i][j] = true if there is a visible billboard
-        int ok[][] = new int[2000][2000];
-
-        for (int i = 0; i < 3; ++i) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
-
-            // -1000 <= x <= 1000, but array indices can't be negative!
-            x1 += 1000; y1 += 1000; x2 += 1000; y2 += 1000;
-
-            for (int x = x1; x < x2; ++x){
-                for (int y = y1; y < y2; ++y) {
-                    // todo: if billboard, mark ok as true
-                    if (i < 2) ok[x][y] = 1;
-                    // todo: if truck, mark ok as false
-                    else ok[x][y] = 0;
-                }
-            }
-        }
-
-        int ans = 0;
-        for (int x = 0; x < 2000; ++x){
-            for (int y = 0; y < 2000; ++y){
-                ans += ok[x][y];
-            }
-        }
-        out.println(ans);
-
-        out.close();
-    }
-}
-```
-
-```
-#include <bits/stdc++.h>
-using namespace std;
-
-// ok[i][j] = true if there is a visible billboard
-bool ok[2000][2000];
-
-int main() {
-    freopen("billboard.in","r",stdin);
-    freopen("billboard.out","w",stdout);
-
-    for (int i = 0; i < 3; ++i) {
-        int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2;
-
-        // -1000 <= x <= 1000, but array indices can't be negative!
-        x1 += 1000, y1 += 1000, x2 += 1000, y2 += 1000;
-
-        for (int x = x1; x < x2; ++x) {
-            for (int y = y1; y < y2; ++y) {
-                // todo: if billboard, mark ok as true
-                if (i < 2) ok[x][y] = 1;
-                // todo: if truck, mark ok as false
-                else ok[x][y] = 0;
-            }
-        }
-    }
-
-    int ans = 0;
-    for (int x = 0; x < 2000; ++x)
-        for (int y = 0; y < 2000; ++y)
-            ans += ok[x][y];
-    cout << ans << "\n";
-}
-```
-
-</Step>
-
-<Step title="Questions?">
-
-```diff
-```
-
-```diff
-```
-
-</Step>
-
-</CodeSurferColumns>
+[USACO 2015 Dec Bronze - Speeding Ticket](http://www.usaco.org/index.php?page=viewproblem2&cpid=568)
 
 ---
 
 ## Keep Practicing!
 
-https://usaco.guide/bronze/rect-geo#problems
+https://usaco.guide/bronze/simulation#problems
 
-- Open Q&A time. Work on another Rectangle Geometry problem!
-- Recommended next problem: [USACO 2018 Jan Bronze - Blocked Billboard II](http://www.usaco.org/index.php?page=viewproblem2&cpid=783)
+- Open Q&A time. Work on another Simulation problem!
+- Recommended next problem: [USACO 2016 Dec Bronze - Block Game](http://www.usaco.org/index.php?page=viewproblem2&cpid=664)
 - Make sure you know how to solve this problem before continuing!
