@@ -38,3 +38,29 @@ public class template {
 </CodeSurfer>
 
 ---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="ArrayList Example"
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+    	// Output:
+    	// 1
+    	// 2
+        ArrayList<Integer> arr = new ArrayList<Integer>(); // Instantiating an ArrayList with default capacity of 10
+        						 // Typically one does not have to worry about capacity, just keep track of size.
+        arr.add(1); // Adds 1 to the end of the ArrayList
+        System.out.println(arr.get(0)); // Printing out the first value stored in the ArrayList
+        arr.add(11);
+        arr.set(1, 2); // Setting the second value to 2
+        System.out.println(arr.get(1));// Printing out the second value stored in the ArrayList
+    }
+}
+```
+
+</CodeSurfer>
+
+---
