@@ -64,3 +64,35 @@ public class Solution {
 </CodeSurfer>
 
 ---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Pair Example"
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    static class Pair<K, V> {
+        K first;
+        V second;
+    
+        public Pair(K first_value, V second_value) {
+            first = first_value;
+            second = second_value;
+        }
+    }
+    
+    public static void main(String[] args) throws IOException {
+    	// Output:
+    	// 5 hello
+        //
+        Pair<Integer, String> p = new Pair(5, "hello"); // Creates a pair with 5 as the key and "hello" as the value
+        System.out.println(p.first + " " + p.second); // Prints out pair
+    }
+}
+```
+
+</CodeSurfer>
+
+---
