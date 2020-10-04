@@ -14,23 +14,41 @@ export const theme = myTheme;
 
 <CodeSurfer theme={CSTheme}>
 
-```java title="Arrays Example"
+```java title="Introduction to Sorting Example"
 import java.io.*;
 import java.util.*;
 
 public class template {
     public static void main(String[] args) throws IOException {
     	// Output:
-    	// 0
-    	// 10
-    	// 10
-        int[] arr = new int[10]; // Instantiating an array with length 10
-        						 // The default value of an int is 0, so the array stores 10 zeroes at first
-        System.out.println(arr[0]); // Printing out the first value stored in the array
-        arr[3] = 10; // Setting the value at index 3 to 10
+    	// 3
+    	// 4
+    	// 7
+    	// 3
+        int[] arr = new int[5];
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[2] = 1;
+        arr[3] = 4;
+        arr[4] = 3;
+        Arrays.sort(arr); // Sorting values in arr
         System.out.println(arr[3]);
-        arr[2] += arr[3]; // Adds the value at index 3 to the value at index 2
-        System.out.println(arr[2]);
+        arr[0] = 4;
+        arr[1] = 2;
+        arr[2] = 7;
+        arr[3] = 4;
+        arr[4] = 2;
+        Arrays.sort(arr, 2, 4); // Sorting values in the range [2, 4)
+        System.out.println(arr[0]);
+        System.out.println(arr[3]);
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        l.add(1);
+        l.add(2);
+        l.add(1);
+        l.add(4);
+        l.add(3);
+        Collections.sort(l); // Sorting values in l
+        System.out.println(l.get(3));
     }
 }
 ```
