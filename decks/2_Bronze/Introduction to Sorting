@@ -1,0 +1,40 @@
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
+import { CodeSurfer, Step } from "code-surfer";
+import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
+import "prismjs/components/prism-java";
+
+export const theme = myTheme;
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Arrays Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) throws IOException {
+    	// Output:
+    	// 0
+    	// 10
+    	// 10
+        int[] arr = new int[10]; // Instantiating an array with length 10
+        						 // The default value of an int is 0, so the array stores 10 zeroes at first
+        System.out.println(arr[0]); // Printing out the first value stored in the array
+        arr[3] = 10; // Setting the value at index 3 to 10
+        System.out.println(arr[3]);
+        arr[2] += arr[3]; // Adds the value at index 3 to the value at index 2
+        System.out.println(arr[2]);
+    }
+}
+```
+
+</CodeSurfer>
+
+---
