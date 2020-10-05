@@ -1,0 +1,480 @@
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
+import { CodeSurfer, Step } from "code-surfer";
+import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
+import "prismjs/components/prism-java";
+
+export const theme = myTheme;
+
+<h1 style={{ letterSpacing: "0px", textAlign: "center" }}>Competitive Programming</h1>
+
+<TightParagraphs>
+(Another) introduction to Competitive Programming.
+</TightParagraphs>
+
+---
+
+## What is Competitive Programming?
+
+<Content>
+
+- Activity where participants compete to solve algorithmic problems
+- Time frame of about 2 - 5 hours
+- Competitive programming has many tangible benefits.
+  - **Programming Interviews**: Many interviews for large companies require applicants to solve algorithmic problems to demonstrate capability.
+  - **College Applications**: There's nothing that boosts your college applications like winning a big award. If you're dedicated enough, you can make it to the USA national competitive programming team's training camp.
+
+</Content>
+
+---
+
+## Curriculum
+
+- Bronze to Intermediate Silver
+- Minimal prerequisites! (Basic Java knowledge)
+- Monthly Contests & Lots of Q&A time!
+
+<Content>
+
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridGap: "3rem", margin: "2rem auto" }}>
+
+- File / Standard IO
+- Time Complexity
+- Data Structures
+- Simulation
+- Rectangle Geometry
+- Sorting
+- Sets & Maps
+- Complete Search
+
+
+- Recursion
+- Ad Hoc
+- Greedy
+- Graphs
+- Binary Search
+- Custom Sorting
+- Prefix Sums
+- Two Pointers
+
+</div>
+
+</Content>
+
+<Notes>
+
+- Curriuclum is Bronze to Silver only due to demographics of people who signed up.
+- Our goal is to make this as _accessible_ and _fun_ to everyone as possible.
+  - Instead of going faster with curriculum, we chose to participate in fun contests & add more Q&A time instead.
+
+</Notes>
+
+---
+
+## Want to go faster?
+
+- Self study! https://usaco.guide
+- (Coming Soon) https://joincpi.org/classes
+- Ask questions during club meetings!
+- Participate in monthly contests! (hard silver/gold level)
+
+---
+
+## Poll: Beginner or Advanced?
+
+Check "yes" for Beginner, "no" for Advanced
+
+---
+
+## Today: Supertrees
+
+<Content>
+
+We won't code the solution today, but we'll code it at a future meeting.
+
+</Content>
+
+---
+
+## Problem Statement
+
+<Content>
+
+Given $n$ towers $(1 \le n \le 10^3)$, create bridges between towers such that there are $p[i][j]$ $(0 \le p[i][j] \le 3)$ different paths from tower $i$ to tower $j$ (assume there's always a solution).
+
+</Content>
+
+---
+
+import img from "./supertrees_diag1.png";
+
+<Split>
+
+<!-- the bars are there to make sure everything is aligned properly -->
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 2 2]   |
+|   1 [1 1 2 2]   |
+|   2 [2 2 1 2]   |
+|   3 [2 2 2 1]   |
+```
+
+<Appear>
+
+<div>
+
+Output:
+
+<img src={img} />
+
+
+```
+0 1
+1 2
+2 3
+1 3
+```
+
+</div>
+
+</Appear>
+
+</Split>
+
+---
+
+## Basic Graph Terminology
+
+- Nodes = towers
+- Edges = bridges
+
+---
+
+## Sample Case
+
+https://repl.it/@NathanWang/IOI-Supertrees-Tester#main.cpp
+
+<Split>
+
+<!-- the bars are there to make sure everything is aligned properly -->
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 2 2]   |
+|   1 [1 1 2 2]   |
+|   2 [2 2 1 2]   |
+|   3 [2 2 2 1]   |
+```
+
+<div>
+
+<img src={img} />
+
+```
+type this:
+4
+0 1
+1 2
+2 3
+1 3
+```
+
+</div>
+
+</Split>
+
+---
+
+## Subtask 1
+
+$$
+p[i][j] = 1
+$$
+
+```
+|      0 1 2 3    |
+|   0 [1 1 1 1]   |
+|   1 [1 1 1 1]   |
+|   2 [1 1 1 1]   |
+|   3 [1 1 1 1]   |
+```
+
+---
+
+## Subtask 1 Solution
+
+<Split>
+
+```
+3
+0 1
+0 2
+0 3
+```
+
+import img6 from "./supertrees_diag6.png"
+
+<img src={img6} />
+
+</Split>
+
+<Appear>
+
+Connect tower $0$ to all the other towers!
+
+</Appear>
+
+---
+
+## Subtask 2a
+
+$$
+p[i][j] = 0 \texttt{ or } 1
+$$
+
+(Assume there's always a solution.)
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 0 0]   |
+|   1 [1 1 0 0]   |
+|   2 [0 0 1 1]   |
+|   3 [0 0 1 1]   |
+```
+
+---
+
+## Subtask 2a Solution
+
+<Split>
+
+```
+n = 4
+|   p[i][j]:      |
+|                 |
+|      0 1 2 3    |
+|   0 [1 1 0 0]   |
+|   1 [1 1 0 0]   |
+|   2 [0 0 1 1]   |
+|   3 [0 0 1 1]   |
+```
+
+import img2 from "./supertrees_diag2.png";
+
+<img src={img2} />
+
+</Split>
+
+---
+
+## Subtask 2b
+
+```
+n = 5
+|   p[i][j]:        |
+|                   |
+|      0 1 2 3 4    |
+|   0 [1 1 0 0 1]   |
+|   1 [1 1 0 0 1]   |
+|   2 [0 0 1 1 0]   |
+|   3 [0 0 1 1 0]   |
+|   4 [1 1 0 0 1]   |
+```
+
+---
+
+## Subtask 2b Solution
+
+<Split>
+
+```
+n = 5
+|   p[i][j]:        |
+|                   |
+|      0 1 2 3 4    |
+|   0 [1 1 0 0 1]   |
+|   1 [1 1 0 0 1]   |
+|   2 [0 0 1 1 0]   |
+|   3 [0 0 1 1 0]   |
+|   4 [1 1 0 0 1]   |
+```
+
+import img5 from "./supertrees_diag5.png"
+
+<img src={img5} />
+
+</Split>
+
+<div style={{ marginBottom: "2em" }}>
+<Content>
+
+<Appear>
+
+For each "group" of connected towers, pick one tower. Add a bridge from that tower to every other tower in the group.
+
+</Appear>
+
+</Content>
+</div>
+
+---
+
+## Subtask 3
+
+$$
+p[i][j] = 0 \texttt{ or } 2
+$$
+
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,2,0,2}
+{0,0,2,1,0,2}
+{2,2,0,0,1,0}
+{0,0,2,2,0,1}
+```
+
+---
+
+## Subtask 3 Solution
+
+<Split>
+
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,2,0,2}
+{0,0,2,1,0,2}
+{2,2,0,0,1,0}
+{0,0,2,2,0,1}
+```
+
+import img3 from "./supertrees_diag3.png";
+
+<img src={img3} />
+
+</Split>
+
+<div style={{ marginBottom: "2em" }}>
+
+<Content>
+
+<Appear>
+
+For each connected group, add bridges to make a circle of towers.
+
+</Appear>
+
+</Content>
+
+</div>
+
+---
+
+## Subtask 4a
+
+$$
+p[i][j] = 0 \texttt{ or } 1 \texttt{ or } 2
+$$
+
+(Assume there's always a solution.)
+
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,1,0,1}
+{0,0,1,1,0,1}
+{2,2,0,0,1,0}
+{0,0,1,1,0,1}
+```
+
+---
+
+## Subtask 4a Solution
+
+```
+{1,2,0,0,2,0}
+{2,1,0,0,2,0}
+{0,0,1,1,0,1}
+{0,0,1,1,0,1}
+{2,2,0,0,1,0}
+{0,0,1,1,0,1}
+```
+
+import img4 from "./supertrees_diag4.png";
+
+<img src={img4} />
+
+---
+
+## Subtask 4b
+
+```
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{2,2,2,1,2,2}
+{2,2,2,2,1,2}
+{2,2,2,2,2,1}
+```
+
+---
+
+## Subtask 4b solution
+
+import img7 from "./supertrees_diag7.png"
+
+<Split>
+
+```
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{1,1,1,2,2,2}
+{2,2,2,1,2,2}
+{2,2,2,2,1,2}
+{2,2,2,2,2,1}
+```
+
+<img src={img7} />
+
+</Split>
+
+<Content>
+
+<div style={{ marginBottom: "2em" }}>
+
+<Appear>
+
+- For each "group" of connected towers, pick a random tower $i$.
+- For all towers $j$ connected to it by $1$ path, add a single bridge from $i \rightarrow j$.
+- Form a cycle with the towers connected to $i$ by $2$ paths.
+
+</Appear>
+
+</div>
+
+</Content>
+
+---
+
+## Feedback
+
+Help us make our meetings better!
+
+https://forms.gle/Qd1d6AjwMA8x3evA7
+
+Next week: File I/O, Rectangle Geometry
