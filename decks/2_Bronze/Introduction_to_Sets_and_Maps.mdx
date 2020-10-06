@@ -45,3 +45,37 @@ public class template {
 </CodeSurfer>
 
 ---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Maps Example"
+import java.io.*;
+import java.util.*;
+
+public class template {
+    public static void main(String[] args) throws IOException {
+    	// Output:
+    	// 5
+    	// false
+    	// true
+    	// 1 5
+    	// 3 14
+    	// 
+        TreeMap<Integer, Integer> map = new TreeMap<Integer, Integer>(); // Creating a TreeMap
+        map.put(1, 5); // [(1, 5)]
+        map.put(3, 14); // [(1, 5); (3, 14)]
+        map.put(2, 7); // [(1, 5); (2, 7); (3, 14)]
+        map.remove(2); // [(1, 5); (3, 14)]
+        System.out.println(map.get(1)); // 5
+        System.out.println(map.containsKey(7)); // false
+        System.out.println(map.containsKey(1)); // true
+        for (int k : map.keySet()){ // Iterating over the keys in the map
+            System.out.println(k + " " + map.get(k));
+        }
+    }
+}
+```
+
+</CodeSurfer>
+
+---
