@@ -79,3 +79,35 @@ public class template {
 </CodeSurfer>
 
 ---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Associative Array Solution"
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+    	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    	TreeMap<Long, Long> map = new TreeMap<Long, Long>(); // Creating a map
+    	int Q = Integer.parseInt(in.readLine());
+    	for(int i = 0; i < Q; i++) {
+    		StringTokenizer token = new StringTokenizer(in.readLine());
+    		int type = Integer.parseInt(token.nextToken());
+    		if(type == 0) {
+    			long k = Long.parseLong(token.nextToken());
+    			long v = Long.parseLong(token.nextToken());
+    			map.put(k, v); // Use put() to assign value
+    		}
+    		else {
+    			Long ret = map.get(Long.parseLong(token.nextToken())); // Use get() to retrieve value
+        		System.out.println(ret == null ? 0 : ret); // get() returns null if element is not present
+    		}
+    	}
+    }
+}
+```
+
+</CodeSurfer>
+
+---
