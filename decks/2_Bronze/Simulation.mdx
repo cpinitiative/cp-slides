@@ -10,60 +10,6 @@ import "prismjs/components/prism-java";
 
 export const theme = myTheme;
 
-# Simulation
-
-https://usaco.guide/bronze/simulation
-
----
-
-## Simulation
-
-<Content>
-<ListSteps>
-
-- Problems that simply involve directly simulating the the problem statement.
-- Assesses competence with one's programming language of choice and knowledge of built-in data structures.
-
-</ListSteps>
-</Content>
-
----
-
-## Example 1
-
-https://usaco.guide/bronze/simulation#example-1
-
-<Content>
-
-Problem Statement:
-
-Alice and Bob are standing on a 2D plane.
-Alice starts at the point $(0, 0)$, and Bob starts at the point $(R, S)$ ($1 \leq R, S \leq 1000$).
-Every second, Alice moves $M$ units to the right, and $N$ units up.
-Every second, Bob moves $P$ units to the left, and $Q$ units down. ($1 \leq M, N, P, Q \leq 10$).
-Determine if Alice and Bob will ever meet (be at the same point at the same time), and if so, when.
-
-</Content>
-
----
-
-## Solution
-
-<Content>
-<ListSteps>
-
-- Simulate the process second by second!
-- If Alice and Bob ever have the same coordinates, then report the meeting time.
-- If Alice's $x$- or $y$-coordinates are ever greater than Bob's, then it is impossible for them to meet.
-- Since Alice and Bob's coordinates are in the range [0, 1000], simulation runs in time.
-
-</ListSteps>
-</Content>
-
-https://usaco.guide/bronze/simulation#solution
-
----
-
 <CodeSurfer theme={CSTheme}>
 
 ```java
@@ -85,31 +31,6 @@ pw.close(); // flush the output
 ```
 
 </CodeSurfer>
-
----
-
-## Example 2
-
-<Content>
-
-There are $N$ buckets ($5 \leq N \leq 10^5$), each with a certain capacity $C_i$ ($1 \leq C_i \leq 100$). One day, after a rainstorm, each bucket is filled with $A_i$ units of water ($1\leq A_i \leq C_i$). Charlie then performs the following process: he pours bucket $1$ into bucket $2$, then bucket $2$ into bucket $3$, and so on, up until pouring bucket $N-1$ into bucket $N$. When Charlie pours bucket $B$ into bucket $B+1$, he pours as much as possible until bucket $B$ is empty or bucket $B+1$ is full. Find out how much water is in each bucket once Charlie is done pouring.
-
-</Content>
-
----
-
-## Solution
-
-<Content>
-<ListSteps>
-
-- Simulate the process!
-- Amount of water poured is smaller of water in bucket $B$ and remaining space in $B+1$
-
-</ListSteps>
-</Content>
-
-https://usaco.guide/bronze/simulation#solution
 
 ---
 
@@ -135,17 +56,3 @@ for(int i = 0; i < n; i++){
 </CodeSurfer>
 
 ---
-
-# Your Turn!
-
-[USACO 2015 Dec Bronze - Speeding Ticket](http://www.usaco.org/index.php?page=viewproblem2&cpid=568)
-
----
-
-## Keep Practicing!
-
-https://usaco.guide/bronze/simulation#problems
-
-- Open Q&A time. Work on another Simulation problem!
-- Recommended next problem: [USACO 2016 Dec Bronze - Block Game](http://www.usaco.org/index.php?page=viewproblem2&cpid=664)
-- Make sure you know how to solve this problem before continuing!
