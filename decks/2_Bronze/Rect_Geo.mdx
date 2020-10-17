@@ -10,55 +10,6 @@ import "prismjs/components/prism-java";
 
 export const theme = myTheme;
 
-# Rectangle Geometry
-
-https://usaco.guide/bronze/rect-geo
-
----
-
-## Rectangle Geometry
-
-<ListSteps>
-
-- Problems involving rectangles whose sides are parallel to the coordinate axes.
-- Tip: Draw out the problem! This should logically lead to a solution.
-
-</ListSteps>
-
----
-
-## Example
-
-[USACO 2017 Dec Bronze - Blocked Billboard](http://www.usaco.org/index.php?page=viewproblem2&cpid=759)
-
-<div>
-
-Problem Statement:
-
-Given two billboards and one truck (all rectangles), find the area of the billboards that aren’t covered by the truck.
-
-</div>
-
----
-
-## Solution
-
-<ListSteps>
-
-- Coordinates are in the range $[-1000, 1000]$
-- Simply go through $2000^2$ possible visible squares and check which ones are visible using nested for loops.
-- Note: You can also solve in $\mathcal{O}(1)$ with math!
-
-</ListSteps>
-
-https://usaco.guide/bronze/rect-geo#naive-solution
-
----
-
-## Code Along!
-
-https://repl.it/
-
 ---
 
 <CodeSurferColumns themes={[CSTheme, CSTheme]}>
@@ -396,11 +347,3 @@ int main() {
 </CodeSurferColumns>
 
 ---
-
-## Keep Practicing!
-
-https://usaco.guide/bronze/rect-geo#problems
-
-- Open Q&A time. Work on another Rectangle Geometry problem!
-- Recommended next problem: [USACO 2018 Jan Bronze - Blocked Billboard II](http://www.usaco.org/index.php?page=viewproblem2&cpid=783)
-- Make sure you know how to solve this problem before continuing!
