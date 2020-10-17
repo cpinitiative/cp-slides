@@ -10,36 +10,6 @@ import "prismjs/components/prism-java";
 
 export const theme = myTheme;
 
-# File and Standard IO
-
-https://usaco.guide/general/io
-
----
-
-## Standard IO
-
-<Content>
-
-- In most websites (such as CodeForces and CSES), input and output are standard.
-- There are two main ways to read standard input, either using `Scanner` or `BufferedReader`.
-- Similarly, there are two main ways to write standard output, either using the `System` class or `PrintWriter`.
-
-</Content>
-
----
-
-## Scanner
-
-<Content>
-
-- The first and simplest way to read input is using `Scanner`.
-- However, `Scanner` is very slow when handling large input files, so it should be avoided during a contest.
-- Here is a sample program using `Scanner`.
-
-</Content>
-
----
-
 <CodeSurfer theme={CSTheme}>
 
 ```java title="Scanner Example"
@@ -68,18 +38,6 @@ public class template {
 ```
 
 </CodeSurfer>
-
----
-
-## BufferedReader
-
-<Content>
-
-- The second way to read input is using `BufferedReader`.
-- This method is quick enough for the majority of contests, so `BufferedReader` is preferred over `Scanner`.
-- Here is a sample program using `BufferedReader`.
-
-</Content>
 
 ---
 
@@ -115,19 +73,6 @@ public class template {
 ```
 
 </CodeSurfer>
-
----
-
-## StringTokenizer
-
-<Content>
-
-- In the example program for `BufferedReader`, ints, doubles, and longs could only be read if they were on a single line.
-- Using the `StringTokenizer` class, it is possible to read in ints, doubles, and longs **on the same line**.
-- The `StringTokenizer` variable must be reinstantiated for every line.
-- Here is a sample program using `BufferedReader` and `StringTokenizer`.
-
-</Content>
 
 ---
 
@@ -171,20 +116,9 @@ public class template {
 
 ---
 
-## InputReader
-
-<Content>
-
-- If using `BufferedReader` and `StringTokenizer` seems tedious, one can create a custom class to simplify code.
-- Here is a sample custom class called `InputReader`.
-
-</Content>
-
----
-
 <CodeSurfer theme={CSTheme}>
 
-```java title="InputReader"
+```java title="InputReader Example"
 import java.io.*;
 import java.util.*;
 
@@ -226,20 +160,6 @@ public class template {
 
 ---
 
-## System Class
-
-<Content>
-
-- The first way to write output is using the `System` class.
-- "out" is a field that is part of the `System` class and is the "standard" output stream.
-- The statement "System.out.println()" prints the provided parameters and then moves onto the next line.
-- The statement "System.out.print()" only prints the provided parameters.
-- The `System` class is fairly slow when printing large amounts of data, so it should be avoided.
-
-</Content>
-
----
-
 <CodeSurfer theme={CSTheme}>
 
 ```java title="System Class Example"
@@ -259,18 +179,6 @@ public class template {
 ```
 
 </CodeSurfer>
-
----
-
-## PrintWriter
-
-<Content>
-
-- The second way to write output is using `PrintWriter`.
-- Using `PrintWriter` is similar to using the `System` class.
-- This method of writing output is faster and preferred for contests.
-
-</Content>
 
 ---
 
@@ -294,39 +202,6 @@ public class template {
 ```
 
 </CodeSurfer>
-
----
-
-## Example
-
-[CSES Weird Algorithm](https://cses.fi/problemset/task/1068)
-
-<Content>
-
-**Problem Statement**: Simulate the following algorithm until n is 1:
-
-- If n is even, the divide n by two
-- if n is odd, multiply n by three and add one.
-
-</Content>
-
----
-
-## Solution
-
-<ListSteps>
-
-- Do exactly what the problem statement says!
-
-</ListSteps>
-
-https://usaco.guide/general/io#example-solution---weird-algorithm
-
----
-
-## Code Along!
-
-https://repl.it/
 
 ---
 
@@ -419,21 +294,9 @@ public class template {
 
 ---
 
-## File IO
-
-<Content>
-
-- USACO requires reading input from and writing output to a file.
-- The main way to do file io is using `BufferedReader` and `PrintWriter`.
-- File io is essentially the same as standard io, but just changing the instantiation of `BufferedReader` and `PrintWriter`.
-
-</Content>
-
----
-
 <CodeSurfer theme={CSTheme}>
 
-```java title="File IO"
+```java title="File IO Example"
 import java.io.*;
 import java.util.*;
 
@@ -459,30 +322,9 @@ public class template {
 
 ---
 
-## File IO with InputReader
-
-<Content>
-
-- We can also adjust `InputReader` to accommodate file io!
-- Note: The statement
-
-  ```java
-  PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("problemname.out")));
-  ```
-
-  is effectively the same as
-
-  ```java
-  PrintWriter pw = new PrintWriter(new FileWriter("problemname.out"));
-  ```
-
-</Content>
-
----
-
 <CodeSurfer theme={CSTheme}>
 
-```java title="File IO"
+```java title="File IO with InputReader Example"
 import java.util.*;
 import java.io.*;
 
@@ -520,35 +362,6 @@ public class template {
 ```
 
 </CodeSurfer>
-
----
-
-## Example
-
-[USACO 2015 Dec Bronze - Fence Painting](http://www.usaco.org/index.php?page=viewproblem2&cpid=567)
-
-<Content>
-
-**Problem Statement**: Bessie and Farmer John both paint an interval of a fence (treated as a number line).
-Given the two intervals, find the total length of the fence that is painted.
-
-</Content>
-
----
-
-## Solution
-
-<ListSteps>
-
-- Endpoints are in the range [0, 100]
-- Create an array of length 100 that stores whether or not each segment of length 1 is painted.
-- Simply go through both intervals and mark all corresponding segments as painted.
-- Loop through array and count up the number of painted segments.
-- Note: You can also solve in O(1) with math!
-
-</ListSteps>
-
-https://usaco.guide/general/io#example-solution---fence-painting
 
 ---
 
