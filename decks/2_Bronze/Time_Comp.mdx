@@ -10,10 +10,9 @@ import "prismjs/components/prism-java";
 
 export const theme = myTheme;
 
-<CodeSurfer theme={CSTheme}>
+---
 
-<LanguageSection>
-<CPPSection>
+<CodeSurfer theme={CSTheme}>
 
 ```cpp
 int a = 5;
@@ -22,18 +21,12 @@ int c = 4;
 int d = a + b + c + 153;
 ```
 
-</CPPSection>
-<JavaSection>
-
 ```java
 int a = 5;
 int b = 7;
 int c = 4;
 int d = a + b + c + 153;
 ```
-
-</JavaSection>
-<PySection>
 
 ```py
 a = 5
@@ -42,17 +35,13 @@ c = 4
 d = a + b + c + 153
 ```
 
-</PySection>
-</LanguageSection>
-
 </CodeSurfer>
 
 ---
 
-<CodeSurfer theme={CSTheme}>
+<CodeSurferColumns themes={[CSTheme, CSTheme]}>
 
-<LanguageSection>
-<CPPSection>
+<Step title="For Loop">
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -60,37 +49,35 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-```cpp
-int i = 0;
-while (i < n) {
-    // constant time node here
-    i++;
-}
-```
-
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= n; i++) {
     // constant time code here
 }
 ```
-
-```java
-int i = 0;
-while (i < n) {
-    // constant time node here
-    i++;
-}
-```
-
-</JavaSection>
-<PySection>
 
 ```py
 for i in range(1, n+1):
     # constant time code here
+```
+
+</Step>
+
+<Step title="While Loop">
+
+```cpp
+int i = 0;
+while (i < n) {
+    // constant time node here
+    i++;
+}
+```
+
+```java
+int i = 0;
+while (i < n) {
+    // constant time node here
+    i++;
+}
 ```
 
 ```py
@@ -100,17 +87,15 @@ while (i < n):
     i += 1
 ```
 
-</PySection>
-</LanguageSection>
+</Step>
 
-</CodeSurfer>
+</CodeSurferColumns>
 
 ---
 
-<CodeSurfer theme={CSTheme}>
+<CodeSurferColumns themes={[CSTheme, CSTheme]}>
 
-<LanguageSection>
-<CPPSection>
+<Step title="Loop 1">
 
 ```cpp
 for (int i = 1; i <= 5*n + 17; i++) {
@@ -118,49 +103,45 @@ for (int i = 1; i <= 5*n + 17; i++) {
 }
 ```
 
-```cpp
-for (int i = 1; i <= n + 457737; i++) {
-    // constant time code here
-}
-```
-
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= 5*n + 17; i++) {
     // constant time code here
 }
 ```
-
-```java
-for (int i = 1; i <= n + 457737; i++) {
-    // constant time code here
-}
-```
-
-</JavaSection>
-<PySection>
 
 ```py
 for i in range(5*n + 17):
     # constant time code here
+```
 
+</Step>
+
+<Step title="Loop 2">
+
+```cpp
+for (int i = 1; i <= n + 457737; i++) {
+    // constant time code here
+}
+```
+
+```java
+for (int i = 1; i <= n + 457737; i++) {
+    // constant time code here
+}
+```
+
+```py
 for i in range(n + 457737):
     # constant time code here
 ```
 
-</PySection>
-</LanguageSection>
+</Step>
 
-</CodeSurfer>
+</CodeSurferColumns>
 
 ---
 
 <CodeSurfer theme={CSTheme}>
-
-<LanguageSection>
-<CPPSection>
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -170,9 +151,6 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= m; j++) {
@@ -180,9 +158,6 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
-
-</JavaSection>
-<PySection>
 
 ```py
 for i in range(n):
@@ -190,17 +165,11 @@ for i in range(n):
         # constant time code here
 ```
 
-</PySection>
-</LanguageSection>
-
 </CodeSurfer>
 
 ---
 
 <CodeSurfer theme={CSTheme}>
-
-<LanguageSection>
-<CPPSection>
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -210,9 +179,6 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= n; i++) {
     for (int j = i; j <= n; j++) {
@@ -220,9 +186,6 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
-
-</JavaSection>
-<PySection>
 
 ```py
 for i in range(n):
@@ -230,17 +193,11 @@ for i in range(n):
         # constant time code here
 ```
 
-</PySection>
-</LanguageSection>
-
 </CodeSurfer>
 
 ---
 
 <CodeSurfer theme={CSTheme}>
-
-<LanguageSection>
-<CPPSection>
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -253,9 +210,6 @@ for (int i = 1; i <= n + 58834; i++) {
 }
 ```
 
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= n; i++) {
     for(int j = 1; j <= n; j++) {
@@ -266,9 +220,6 @@ for (int i = 1; i <= n + 58834; i++) {
     // more constant time code here
 }
 ```
-
-</JavaSection>
-<PySection>
 
 ```py
 for i in range(n):
@@ -279,17 +230,11 @@ for i in range(n + 58834):
     # more constant time code here
 ```
 
-</PySection>
-</LanguageSection>
-
 </CodeSurfer>
 
 ---
 
 <CodeSurfer theme={CSTheme}>
-
-<LanguageSection>
-<CPPSection>
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -302,9 +247,6 @@ for (int i = 1; i <= m; i++) {
 }
 ```
 
-</CPPSection>
-<JavaSection>
-
 ```java
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
@@ -316,9 +258,6 @@ for (int i = i; j <= m; i++) {
 }
 ```
 
-</JavaSection>
-<PySection>
-
 ```py
 for i in range(n):
     for j in range(n):
@@ -327,9 +266,6 @@ for i in range(n):
 for i in range(m):
     # more constant time code here
 ```
-
-</PySection>
-</LanguageSection>
 
 </CodeSurfer>
 
