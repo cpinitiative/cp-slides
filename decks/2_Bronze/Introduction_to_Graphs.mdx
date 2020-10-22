@@ -1,0 +1,45 @@
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
+import { CodeSurfer, Step } from "code-surfer";
+import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
+import "prismjs/components/prism-java";
+
+export const theme = myTheme;
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Grass Planting Solution"
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) throws IOException{
+    	BufferedReader in = new BufferedReader(new FileReader("planting.in"));
+    	int N = Integer.parseInt(in.readLine());
+    	int[] Degree = new int[N]; // Create an array storing the degrees of the nodes.
+    	for(int i = 0; i < N - 1; i++) {
+    		StringTokenizer token = new StringTokenizer(in.readLine());
+    		int A = Integer.parseInt(token.nextToken());
+    		int B = Integer.parseInt(token.nextToken());
+    		Degree[A - 1]++; // The degree of each node increases by 1, since there is one more neighbor.
+    		Degree[B - 1]++;
+    	}
+    	int D = 0;
+    	for(int i = 0; i < N; i++)
+    		D = Math.max(D, Degree[i]);
+    	PrintWriter output = new PrintWriter(new File("planting.out"));
+    	output.println(D + 1);
+    	output.close();
+    }
+}
+```
+
+</CodeSurfer>
+
+---
