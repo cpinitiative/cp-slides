@@ -23,14 +23,12 @@ public class Solution {
 		if (multiset.containsKey(x))
 			multiset.put(x, multiset.get(x) + 1);
 		else
-			multiset.put(x, 1);
-	}
+			multiset.put(x, 1); }
 	static void remove(int x) {
 		int temp = multiset.get(x);
 		multiset.put(x, temp - 1);
 		if (temp == 1)
-			multiset.remove(x);
-	}
+			multiset.remove(x); }
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer token = new StringTokenizer(in.readLine());
@@ -45,15 +43,12 @@ public class Solution {
 		for (int i = 0; i < m; i++)
 			t[i] = Integer.parseInt(token.nextToken());
 		for (int a : t) {
-			Integer b = multiset.floorKey(a); // Find highest price 
-									// less than or equal to maximum
+			Integer b = multiset.floorKey(a); // Find highest price less than or equal to maximum
 			if (b == null) { // Returns null if no price found
 				out.println(-1);
-				continue;
-			}
+				continue; }
 			out.println(b);
-			remove(b); // Remove ticket once bought
-		}
+			remove(b); // Remove ticket once bought }
 		out.close();
 	}
 }
