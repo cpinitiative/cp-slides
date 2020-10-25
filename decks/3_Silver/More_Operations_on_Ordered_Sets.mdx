@@ -1,0 +1,59 @@
+import { jsx } from 'theme-ui'
+import { myTheme } from "../../src/components/mdx-deck/customTheme";
+import ListSteps from "../../src/components/mdx-deck/ListSteps";
+import { CSTheme } from "../../src/components/mdx-deck/custom-codesurfer-theme";
+import { CodeSurfer, Step } from "code-surfer";
+import CodeSurferColumns from "../../src/components/mdx-deck/CodeSurferColumns";
+import Content from "../../src/components/mdx-deck/Content";
+import TightParagraphs from "../../src/components/mdx-deck/TightParagraphs";
+import "prismjs/components/prism-java";
+
+export const theme = myTheme;
+
+---
+
+<CodeSurfer theme={CSTheme}>
+
+```java title="Concert Tickets Solution"
+import java.io.*;
+import java.util.*;
+public class Solution {
+	static TreeMap<Integer, Integer> multiset = new TreeMap<Integer, Integer>();
+	static void add(int x) {
+		if (multiset.containsKey(x))
+			multiset.put(x, multiset.get(x) + 1);
+		else
+			multiset.put(x, 1); }
+	static void remove(int x) {
+		int temp = multiset.get(x);
+		multiset.put(x, temp - 1);
+		if (temp == 1)
+			multiset.remove(x); }
+	public static void main(String[] args) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer token = new StringTokenizer(in.readLine());
+		PrintWriter out = new PrintWriter(System.out);
+		int n = Integer.parseInt(token.nextToken());
+		int m = Integer.parseInt(token.nextToken());
+		token = new StringTokenizer(in.readLine());
+		for (int i = 0; i < n; i++)
+			add(Integer.parseInt(token.nextToken())); // Add prices
+		token = new StringTokenizer(in.readLine());
+		int[] t = new int[m];
+		for (int i = 0; i < m; i++)
+			t[i] = Integer.parseInt(token.nextToken());
+		for (int a : t) {
+			Integer b = multiset.floorKey(a); // Find highest price less than or equal to maximum
+			if (b == null) { // Returns null if no price found
+				out.println(-1);
+				continue; }
+			out.println(b);
+			remove(b); // Remove ticket once bought }
+		out.close();
+	}
+}
+```
+
+</CodeSurfer>
+
+---
