@@ -67,8 +67,6 @@ export const theme = myTheme;
 
 - Self study! https://usaco.guide
 - (Coming Soon) https://joincpi.org/classes
-- Ask questions during club meetings!
-- Participate in monthly contests! (hard silver/gold level)
 
 ---
 
@@ -76,7 +74,7 @@ export const theme = myTheme;
 
 <Content>
 
-We won't code the solution today, but we'll code it at a future meeting.
+An example of a simple competitive programming problem.
 
 </Content>
 
@@ -92,51 +90,11 @@ Given $n$ towers $(1 \le n \le 10^3)$, create bridges between towers such that t
 
 ---
 
-import img from "./supertrees_diag1.png";
-
-<Split>
-
-<!-- the bars are there to make sure everything is aligned properly -->
-
-```
-n = 4
-|   p[i][j]:      |
-|                 |
-|      0 1 2 3    |
-|   0 [1 1 2 2]   |
-|   1 [1 1 2 2]   |
-|   2 [2 2 1 2]   |
-|   3 [2 2 2 1]   |
-```
-
-<Appear>
-
-<div>
-
-Output:
-
-<img src={img} />
-
-
-```
-0 1
-1 2
-2 3
-1 3
-```
-
-</div>
-
-</Appear>
-
-</Split>
-
----
-
 ## Basic Graph Terminology
 
 - Nodes = towers
 - Edges = bridges
+- Paths
 
 ---
 
@@ -144,27 +102,31 @@ Output:
 
 https://repl.it/@NathanWang/IOI-Supertrees-Tester#main.cpp
 
-<Split>
+---
+
+## Sample Case
 
 <!-- the bars are there to make sure everything is aligned properly -->
 
-```
-n = 4
-|   p[i][j]:      |
-|                 |
-|      0 1 2 3    |
-|   0 [1 1 2 2]   |
-|   1 [1 1 2 2]   |
-|   2 [2 2 1 2]   |
-|   3 [2 2 2 1]   |
-```
+$n = 4$
 
-<div>
+$$
+\begin{bmatrix}
+1 & 1 & 2 & 2\\
+1 & 1 & 2 & 2\\
+2 & 2 & 1 & 2\\
+2 & 2 & 2 & 1
+\end{bmatrix}
+$$
 
-<img src={img} />
+---
+
+<Split>
+<div> 
+
+Type this:
 
 ```
-type this:
 4
 0 1
 1 2
@@ -174,6 +136,9 @@ type this:
 
 </div>
 
+<div>
+<img src={img} />
+</div>
 </Split>
 
 ---
@@ -184,32 +149,22 @@ $$
 p[i][j] = 1
 $$
 
-```
-|      0 1 2 3    |
-|   0 [1 1 1 1]   |
-|   1 [1 1 1 1]   |
-|   2 [1 1 1 1]   |
-|   3 [1 1 1 1]   |
-```
+$$
+\begin{bmatrix}
+1 & 1 & 1 & 1\\
+1 & 1 & 1 & 1\\
+1 & 1 & 1 & 1\\
+1 & 1 & 1 & 1
+\end{bmatrix}
+$$
 
 ---
 
 ## Subtask 1 Solution
 
-<Split>
-
-```
-3
-0 1
-0 2
-0 3
-```
-
 import img6 from "./supertrees_diag6.png"
 
 <img src={img6} />
-
-</Split>
 
 <Appear>
 
@@ -227,79 +182,47 @@ $$
 
 (Assume there's always a solution.)
 
-```
-n = 4
-|   p[i][j]:      |
-|                 |
-|      0 1 2 3    |
-|   0 [1 1 0 0]   |
-|   1 [1 1 0 0]   |
-|   2 [0 0 1 1]   |
-|   3 [0 0 1 1]   |
-```
+$ n = 4 $
 
+$$
+\begin{bmatrix}
+1 & 1 & 0 & 0\\
+1 & 1 & 0 & 0\\
+0 & 0 & 1 & 1\\
+0 & 0 & 1 & 1
+\end{bmatrix}
+$$
 ---
 
 ## Subtask 2a Solution
-
-<Split>
-
-```
-n = 4
-|   p[i][j]:      |
-|                 |
-|      0 1 2 3    |
-|   0 [1 1 0 0]   |
-|   1 [1 1 0 0]   |
-|   2 [0 0 1 1]   |
-|   3 [0 0 1 1]   |
-```
 
 import img2 from "./supertrees_diag2.png";
 
 <img src={img2} />
 
-</Split>
-
 ---
 
 ## Subtask 2b
 
-```
-n = 5
-|   p[i][j]:        |
-|                   |
-|      0 1 2 3 4    |
-|   0 [1 1 0 0 1]   |
-|   1 [1 1 0 0 1]   |
-|   2 [0 0 1 1 0]   |
-|   3 [0 0 1 1 0]   |
-|   4 [1 1 0 0 1]   |
-```
+$ n = 5 $
+
+$$
+\begin{bmatrix}
+1 & 1 & 0 & 0 & 1\\
+1 & 1 & 0 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+0 & 0 & 1 & 1 & 0\\
+1 & 1 & 0 & 0 & 1
+\end{bmatrix}
+$$
 
 ---
 
 ## Subtask 2b Solution
 
-<Split>
-
-```
-n = 5
-|   p[i][j]:        |
-|                   |
-|      0 1 2 3 4    |
-|   0 [1 1 0 0 1]   |
-|   1 [1 1 0 0 1]   |
-|   2 [0 0 1 1 0]   |
-|   3 [0 0 1 1 0]   |
-|   4 [1 1 0 0 1]   |
-```
-
 import img5 from "./supertrees_diag5.png"
 
 <img src={img5} />
-
-</Split>
 
 <div style={{ marginBottom: "2em" }}>
 <Content>
@@ -321,35 +244,26 @@ $$
 p[i][j] = 0 \texttt{ or } 2
 $$
 
-```
-{1,2,0,0,2,0}
-{2,1,0,0,2,0}
-{0,0,1,2,0,2}
-{0,0,2,1,0,2}
-{2,2,0,0,1,0}
-{0,0,2,2,0,1}
-```
+(also 1 for a node and itself)
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 0 & 2 & 0\\
+2 & 1 & 0 & 0 & 2 & 0\\
+0 & 0 & 1 & 2 & 0 & 2\\
+0 & 0 & 2 & 1 & 0 & 2\\
+2 & 2 & 0 & 0 & 1 & 0\\
+0 & 0 & 2 & 2 & 0 & 1
+\end{bmatrix}
+$$
 
 ---
 
 ## Subtask 3 Solution
 
-<Split>
-
-```
-{1,2,0,0,2,0}
-{2,1,0,0,2,0}
-{0,0,1,2,0,2}
-{0,0,2,1,0,2}
-{2,2,0,0,1,0}
-{0,0,2,2,0,1}
-```
-
 import img3 from "./supertrees_diag3.png";
 
 <img src={img3} />
-
-</Split>
 
 <div style={{ marginBottom: "2em" }}>
 
@@ -375,27 +289,20 @@ $$
 
 (Assume there's always a solution.)
 
-```
-{1,2,0,0,2,0}
-{2,1,0,0,2,0}
-{0,0,1,1,0,1}
-{0,0,1,1,0,1}
-{2,2,0,0,1,0}
-{0,0,1,1,0,1}
-```
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 0 & 2 & 0\\
+2 & 1 & 0 & 0 & 2 & 0\\
+0 & 0 & 1 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0 & 1\\
+2 & 2 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 1 & 0 & 1
+\end{bmatrix}
+$$
 
 ---
 
 ## Subtask 4a Solution
-
-```
-{1,2,0,0,2,0}
-{2,1,0,0,2,0}
-{0,0,1,1,0,1}
-{0,0,1,1,0,1}
-{2,2,0,0,1,0}
-{0,0,1,1,0,1}
-```
 
 import img4 from "./supertrees_diag4.png";
 
@@ -405,14 +312,16 @@ import img4 from "./supertrees_diag4.png";
 
 ## Subtask 4b
 
-```
-{1,1,1,2,2,2}
-{1,1,1,2,2,2}
-{1,1,1,2,2,2}
-{2,2,2,1,2,2}
-{2,2,2,2,1,2}
-{2,2,2,2,2,1}
-```
+$$
+\begin{bmatrix}
+1 & 1 & 1 & 2 & 2 & 2\\
+1 & 1 & 1 & 2 & 2 & 2\\
+1 & 1 & 1 & 2 & 2 & 2\\
+2 & 2 & 2 & 1 & 2 & 2\\
+2 & 2 & 2 & 2 & 1 & 2\\
+2 & 2 & 2 & 2 & 2 & 1
+\end{bmatrix}
+$$
 
 ---
 
@@ -420,20 +329,7 @@ import img4 from "./supertrees_diag4.png";
 
 import img7 from "./supertrees_diag7.png"
 
-<Split>
-
-```
-{1,1,1,2,2,2}
-{1,1,1,2,2,2}
-{1,1,1,2,2,2}
-{2,2,2,1,2,2}
-{2,2,2,2,1,2}
-{2,2,2,2,2,1}
-```
-
 <img src={img7} />
-
-</Split>
 
 <Content>
 
